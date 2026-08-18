@@ -1,0 +1,2489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SANJI NEWERA</title>
+    <meta name="description" content="SANJINEWERA menyediakan layanan key mod aplikasi premium terbaik #1 indonesia.">
+    <meta name="theme-color" content="#050c26">
+    <link rel="icon" type="image/png" href="https://files.catbox.moe/kgo0k4.jpg">
+    <link rel="apple-touch-icon" href="https://files.catbox.moe/kgo0k4.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>tailwind.config={theme:{extend:{fontFamily:{inter:['Inter','sans-serif']}}}}</script>
+    <style>
+        /* ═══════════════════════════════
+           SANJI NEWERA — Clean Minimal UI
+           ═══════════════════════════════ */
+        :root {
+            --bg-main:    #050c26;
+            --bg-section: #0a1540;
+            --bg-card:    #0d1a4a;
+            --bg-hover:   #111f5c;
+            --border:     rgba(37,99,235,0.18);
+            --border-md:  rgba(37,99,235,0.35);
+            --blue:       #2563eb;
+            --blue-dim:   rgba(37,99,235,0.15);
+            --blue-dark:  #1d4ed8;
+            --green:      #22c55e;
+            --green-dim:  rgba(34,197,94,0.12);
+            --red:        #ef4444;
+            --red-dim:    rgba(239,68,68,0.12);
+            --amber:      #f59e0b;
+            --text-1:     #EAF4FF;
+            --text-2:     #94a3b8;
+            --text-3:     #475569;
+            --brand-wa:   #25d366;
+        }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html {
+            height:100%;
+            width:100%;
+            max-width:100%;
+            overflow-x:hidden;
+            background:#050c26;
+        }
+        body {
+            font-family:'Inter',sans-serif;
+            background:#050c26;
+            color:var(--text-1);
+            min-height:100dvh;
+            width:100%;
+            max-width:100%;
+            position:relative;
+            -webkit-font-smoothing:antialiased;
+            overflow-x:hidden;
+        }
+        body.no-scroll { overflow:hidden; }
+
+        ::-webkit-scrollbar { width:4px; }
+        ::-webkit-scrollbar-track { background:#050c26; }
+        ::-webkit-scrollbar-thumb { background:#1e3a8a; border-radius:4px; }
+
+        @keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+        @keyframes slideUp  { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes slideRight { from{opacity:0;transform:translateX(100%)} to{opacity:1;transform:translateX(0)} }
+        @keyframes slideBottom { from{transform:translateY(100%)} to{transform:translateY(0)} }
+        @keyframes spin     { to{transform:rotate(360deg)} }
+        @keyframes marquee  { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+        @keyframes toastIn  { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+        .animate-spin   { animation:spin 1s linear infinite; }
+        .fade-in-up     { animation:slideUp .3s ease both; }
+
+        /* ── glass utility ── */
+        .glass {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+        .glass-strong {
+            background: var(--bg-card);
+            border: 1px solid var(--border-md);
+            border-radius: 12px;
+        }
+
+        /* ── Cards ── */
+        .card {
+            background:var(--bg-card);
+            border:1px solid var(--border);
+            border-radius:12px;
+        }
+        .card-hover {
+            transition:border-color .2s, background .2s;
+            cursor:pointer;
+        }
+        .card-hover:hover {
+            border-color:var(--border-md);
+            background:var(--bg-hover);
+        }
+        .card-hover:active { opacity:.85; }
+
+        /* ── Buttons ── */
+        .btn {
+            display:inline-flex; align-items:center; justify-content:center;
+            gap:6px; font-weight:600; font-size:13px;
+            border-radius:8px; cursor:pointer;
+            transition:opacity .15s, transform .1s;
+            border:none; text-decoration:none;
+        }
+        .btn:active { transform:scale(.97); }
+        .btn-primary {
+            background:var(--blue);
+            color:#fff;
+            padding:10px 18px;
+        }
+        .btn-primary:hover { opacity:.88; }
+        .btn-outline {
+            background:transparent;
+            border:1px solid var(--border-md);
+            color:var(--text-2);
+            padding:9px 16px;
+        }
+        .btn-outline:hover { border-color:var(--blue); color:var(--text-1); }
+        .btn-green  { background:var(--green); color:#fff; padding:10px 18px; }
+        .btn-green:hover { opacity:.88; }
+        .btn-red    { background:var(--red);   color:#fff; padding:10px 18px; }
+        .btn-red:hover   { opacity:.88; }
+        .btn-ghost {
+            background:rgba(255,255,255,.04);
+            border:1px solid var(--border);
+            color:var(--text-2);
+            padding:9px 14px;
+        }
+        .btn-ghost:hover { background:rgba(255,255,255,.07); }
+
+        /* ── Inputs ── */
+        .hm-input, .form-input {
+            width:100%; padding:10px 14px;
+            border-radius:8px;
+            background:rgba(255,255,255,.04);
+            border:1px solid var(--border-md);
+            color:var(--text-1); font-size:13px;
+            font-family:'Inter',sans-serif;
+            transition:border-color .15s;
+        }
+        .hm-input:focus, .form-input:focus {
+            outline:none;
+            border-color:rgba(59,130,246,.5);
+            background:rgba(59,130,246,.05);
+        }
+        .hm-input::placeholder, .form-input::placeholder { color:var(--text-3); }
+
+        /* ── Status badges ── */
+        .status-badge {
+            display:inline-flex; align-items:center; gap:4px;
+            padding:3px 10px; border-radius:6px;
+            font-size:10px; font-weight:700;
+            text-transform:uppercase; letter-spacing:.4px;
+        }
+        .status-pending  { background:rgba(245,158,11,.12); color:#fbbf24; border:1px solid rgba(245,158,11,.2); }
+        .status-done     { background:var(--green-dim);     color:#4ade80; border:1px solid rgba(34,197,94,.2); }
+        .status-cancelled{ background:var(--red-dim);       color:#f87171; border:1px solid rgba(239,68,68,.2); }
+
+        /* ── Product/game card ── */
+        .product-card { transition:border-color .2s, opacity .15s; }
+        .product-card:hover  { border-color:var(--border-md) !important; }
+        .product-card:active { opacity:.8; }
+
+        /* ── Scrollable rows ── */
+        .h-scroll {
+            display:flex; gap:10px;
+            overflow-x:auto; scroll-snap-type:x mandatory;
+            -webkit-overflow-scrolling:touch;
+            scrollbar-width:none; padding-bottom:4px;
+        }
+        .h-scroll::-webkit-scrollbar { display:none; }
+        .h-scroll-item { scroll-snap-align:start; flex-shrink:0; }
+
+        /* ── Filter pills ── */
+        .filter-pill {
+            padding:6px 14px; border-radius:20px;
+            border:1px solid var(--border);
+            background:transparent; color:var(--text-2);
+            font-size:12px; font-weight:500;
+            white-space:nowrap; cursor:pointer;
+            transition:all .15s;
+        }
+        .filter-pill.active, .filter-pill:hover {
+            background:var(--blue);
+            border-color:var(--blue);
+            color:#fff;
+        }
+        .filter-pill:active { opacity:.8; }
+
+        /* ── Section label ── */
+        .section-label {
+            font-size:11px; font-weight:700;
+            letter-spacing:.06em; text-transform:uppercase;
+            color:var(--text-3);
+        }
+
+        /* ── Marquee ── */
+        .marquee-track { animation:marquee 18s linear infinite; }
+
+        /* ── Modals ── */
+        .modal-overlay {
+            position:fixed; inset:0;
+            background:rgba(0,0,0,.75);
+            z-index:9000;
+            display:flex; align-items:flex-end;
+        }
+        .modal-sheet {
+            width:100%; background:var(--bg-card);
+            border-top:1px solid var(--border);
+            border-radius:20px 20px 0 0;
+            max-height:92dvh; overflow-y:auto;
+            animation:slideBottom .22s ease both;
+        }
+        .modal-sheet::-webkit-scrollbar { width:3px; }
+        .modal-sheet::-webkit-scrollbar-thumb { background:#1e3a8a; }
+
+        /* ── Side drawer ── */
+        .side-drawer {
+            position:absolute; right:0; top:0; bottom:0;
+            width:280px; background:var(--bg-card);
+            border-left:1px solid var(--border);
+            overflow-y:auto;
+            animation:slideRight .22s ease both;
+        }
+
+        /* ── Payment modal ── */
+        #paymentModal { position:fixed !important; z-index:99999 !important; }
+
+        /* ── Toast ── */
+        #toast-container {
+            position:fixed; bottom:20px;
+            left:12px; right:12px;
+            z-index:9500;
+            display:flex; flex-direction:column-reverse; gap:6px;
+            pointer-events:none;
+        }
+        #toast-container > * { pointer-events:auto; }
+        .toast {
+            display:flex; align-items:center; gap:10px;
+            padding:11px 14px; border-radius:10px;
+            border:1px solid var(--border-md);
+            background:var(--bg-hover);
+            font-size:12px; color:var(--text-1);
+            animation:toastIn .2s ease both;
+            max-width:100%;
+        }
+
+        /* ── Purchase notif ── */
+        #purchase-notif-container {
+            position:fixed; bottom:20px; left:12px;
+            z-index:9200;
+            display:flex; flex-direction:column; gap:8px;
+            pointer-events:none;
+        }
+        .purchase-notif {
+            display:flex; align-items:center; gap:10px;
+            padding:10px 14px; border-radius:12px;
+            background:var(--bg-hover);
+            border:1px solid var(--border-md);
+            animation:toastIn .3s ease both;
+            max-width:270px;
+        }
+        .purchase-notif-avatar {
+            width:34px; height:34px; border-radius:8px;
+            flex-shrink:0; overflow:hidden;
+            display:flex; align-items:center; justify-content:center;
+            font-weight:800; font-size:13px; color:#fff;
+        }
+        .purchase-notif-name  { font-size:11px; font-weight:700; color:var(--text-1); }
+        .purchase-notif-product { font-size:10px; color:var(--text-2); }
+        .purchase-notif-price { font-size:10px; font-weight:700; color:var(--green); white-space:nowrap; }
+
+        /* ── Avatar ── */
+        .avatar-wrap { position:relative; cursor:pointer; }
+        .avatar-wrap:hover .avatar-overlay { opacity:1; }
+        .avatar-overlay {
+            position:absolute; inset:0; border-radius:50%;
+            background:rgba(0,0,0,.5);
+            display:flex; align-items:center; justify-content:center;
+            opacity:0; transition:opacity .2s;
+        }
+
+        /* ── Profile photo ── */
+        .profile-photo-container {
+            width:56px; height:56px; border-radius:50%;
+            overflow:hidden; flex-shrink:0;
+            border:2px solid var(--border-md);
+        }
+        .profile-photo-container img { width:100%; height:100%; object-fit:cover; }
+        .profile-photo-initial {
+            width:100%; height:100%;
+            background:var(--blue);
+            display:flex; align-items:center; justify-content:center;
+            font-weight:800; font-size:20px; color:#fff;
+        }
+
+        /* ── Misc ── */
+        .shimmer-text { color:var(--blue); text-shadow: 0 0 8px rgba(0,210,255,0.7); }
+        .neon-text    { color:var(--blue); text-shadow: 0 0 12px rgba(0,210,255,0.8), 0 0 24px rgba(0,110,255,0.4); }
+        .neon-card    { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; }
+        .buy-btn      { transition:opacity .15s; cursor:pointer; }
+        .buy-btn:hover { opacity:.85; }
+        .buy-btn:active { opacity:.7; transform:scale(.97); }
+        .btn-gaming {
+            display:flex; align-items:center; justify-content:center; gap:6px;
+            background:var(--blue); color:#fff;
+            font-weight:700; border-radius:8px;
+            cursor:pointer; border:none;
+            transition:opacity .15s;
+        }
+        .btn-gaming:hover  { opacity:.88; }
+        .btn-gaming:active { opacity:.7; transform:scale(.97); }
+        .cat-btn {
+            padding:6px 14px; border-radius:20px;
+            border:1px solid var(--border);
+            background:transparent; color:var(--text-2);
+            font-size:12px; font-weight:500;
+            cursor:pointer; transition:all .15s;
+        }
+        .cat-btn.active, .cat-btn:hover {
+            background:var(--blue); border-color:var(--blue); color:#fff;
+        }
+        .popular-scroll { display:flex; gap:10px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:4px; }
+        .popular-scroll::-webkit-scrollbar { display:none; }
+        .popular-card { min-width:180px; max-width:180px; scroll-snap-align:start; flex-shrink:0; }
+        .popular-scroll-wrapper::after { content:''; position:absolute; top:0; right:0; bottom:4px; width:40px; background:linear-gradient(to left,var(--bg-main),transparent); pointer-events:none; }
+        .popular-scroll-wrapper { position:relative; }
+        .filter-scroll { scrollbar-width:none; }
+        .filter-scroll::-webkit-scrollbar { display:none; }
+        .filter-sticky-left { position:sticky; left:0; z-index:10; flex-shrink:0; background:var(--bg-main); padding-right:6px; display:flex; }
+        .prod-filter { transition:all .15s; }
+        .testi-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; transition:border-color .2s; }
+        .testi-card:hover { border-color:var(--border-md); }
+        .trust-badge { transition:border-color .2s; }
+        .trust-badge:hover { border-color:var(--border-md) !important; }
+        .badge-tag { font-size:7px; letter-spacing:.04em; font-weight:800; padding:2px 6px; border-radius:4px; line-height:1.3; text-transform:uppercase; }
+        .platform-label { font-size:7px; letter-spacing:.04em; font-weight:700; padding:2px 5px; border-radius:3px; line-height:1.3; background:rgba(59,130,246,.15); color:#93c5fd; border:1px solid rgba(59,130,246,.25); }
+        .hm-logo::before { display:none; }
+        .hm-logo-img { display:block; flex-shrink:0; }
+        body::before, body::after { display:none; }
+    
+/* =========================================================
+   SANJI NEWERA - STATIC FALLBACK CSS
+   Critical UI styles that work even when Tailwind CDN fails.
+   ========================================================= */
+#menu-drawer {
+  position:fixed!important; inset:0!important; display:none; z-index:8000!important;
+}
+#menu-drawer .menu-overlay {
+  position:absolute; inset:0; background:rgba(0,0,0,.72);
+}
+#menu-drawer-content.side-drawer {
+  position:absolute!important; top:0!important; right:0!important; bottom:0!important;
+  width:min(340px,88vw)!important; height:100%!important;
+  margin:0!important; padding:0!important;
+  background:#0d1a4a!important;
+  border-left:1px solid rgba(56,130,246,.28)!important;
+  box-shadow:-20px 0 60px rgba(0,0,0,.45);
+  overflow-y:auto!important;
+  animation:slideRight .22s ease both;
+  z-index:2;
+}
+.sne-menu-link {
+  display:flex!important; align-items:center!important; gap:12px!important;
+  width:100%!important; padding:12px 14px!important; margin:2px 0!important;
+  border-radius:10px!important; color:#94a3b8!important;
+  text-decoration:none!important; font-size:13px!important; font-weight:600!important;
+  background:transparent; transition:.15s ease;
+}
+.sne-menu-link:hover { color:#eaf4ff!important; background:rgba(255,255,255,.055)!important; }
+.sne-menu-divider { height:1px; margin:10px 0; background:rgba(37,99,235,.18); }
+
+#sne-auth-page, #sne-payment {
+  position:fixed; inset:0; z-index:100000;
+  display:none; overflow:auto; background:#050c26;
+}
+.sne-auth-shell {
+  min-height:100%; display:flex; align-items:center; justify-content:center;
+  padding:24px 16px;
+  background:
+    radial-gradient(circle at 20% 15%,rgba(37,99,235,.18),transparent 35%),
+    radial-gradient(circle at 85% 80%,rgba(99,102,241,.12),transparent 35%), #050c26;
+}
+.sne-auth-card {
+  width:min(430px,100%); background:#0d1a4a;
+  border:1px solid rgba(37,99,235,.25); border-radius:18px;
+  padding:24px; box-shadow:0 20px 70px rgba(0,0,0,.38);
+}
+.sne-auth-logo { display:block; width:auto; height:48px; max-width:190px; object-fit:contain; margin:0 auto 18px; }
+.sne-auth-title { color:#fff; font-size:22px; font-weight:900; text-align:center; margin-bottom:5px; }
+.sne-auth-sub { color:#64748b; font-size:12px; text-align:center; margin-bottom:20px; }
+.sne-field { margin-bottom:12px; }
+.sne-field label { display:block; color:#94a3b8; font-size:11px; font-weight:700; margin-bottom:6px; }
+.sne-field input {
+  width:100%; height:44px; padding:0 13px; border-radius:10px;
+  background:rgba(255,255,255,.045); border:1px solid rgba(37,99,235,.28);
+  color:#eaf4ff; outline:none; font:inherit;
+}
+.sne-field input:focus { border-color:#2563eb; box-shadow:0 0 0 3px rgba(37,99,235,.10); }
+.sne-main-btn {
+  width:100%; height:44px; border:0; border-radius:10px; cursor:pointer;
+  background:linear-gradient(135deg,#1d4ed8,#38bdf8); color:#fff; font-weight:900;
+}
+.sne-back-btn {
+  width:100%; height:40px; margin-top:9px; border-radius:10px; cursor:pointer;
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10); color:#94a3b8;
+}
+.sne-auth-switch { text-align:center; margin-top:15px; color:#64748b; font-size:11px; }
+.sne-auth-switch a { color:#60a5fa; text-decoration:none; font-weight:800; }
+
+#sne-payment { align-items:flex-end; justify-content:center; background:rgba(0,0,0,.78); }
+.sne-pay-card {
+  width:min(520px,100%); max-height:94dvh; overflow:auto;
+  background:#0d1a4a; border:1px solid rgba(37,99,235,.28);
+  border-radius:20px 20px 0 0; padding:20px;
+  box-shadow:0 -20px 70px rgba(0,0,0,.45);
+}
+.sne-pay-head { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:14px; }
+.sne-pay-head h3 { margin:0; color:#fff; font-size:16px; font-weight:900; }
+.sne-close {
+  width:34px; height:34px; border-radius:9px; border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.05); color:#94a3b8; cursor:pointer;
+}
+.sne-order {
+  padding:12px; border-radius:12px; background:rgba(255,255,255,.035);
+  border:1px solid rgba(37,99,235,.18); margin-bottom:14px;
+}
+.sne-order-name { color:#fff; font-weight:900; font-size:14px; }
+.sne-order-price { color:#38bdf8; font-size:13px; font-weight:900; margin-top:3px; }
+.sne-qris {
+  display:block; width:min(320px,100%); max-height:420px; object-fit:contain;
+  margin:10px auto 14px; border-radius:12px; background:#fff; padding:8px;
+}
+.sne-pay-note {
+  color:#94a3b8; font-size:11px; line-height:1.6; text-align:center; margin:0 0 14px;
+}
+.sne-wa {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  width:100%; min-height:46px; border-radius:11px;
+  background:#22c55e; color:#fff; text-decoration:none; font-weight:900; font-size:13px;
+}
+.sne-wa:hover { filter:brightness(.93); }
+
+@media (min-width:700px) {
+  #sne-payment { align-items:center; }
+  .sne-pay-card { border-radius:20px; }
+}
+
+    </style>
+
+    <!-- Dynamic Theme from DB -->
+    <style>
+        :root {
+            --neon-purple: #2563eb;
+            --neon-violet: #6366f1;
+            --accent-color:#2563eb;
+            --bg-dark:     #050c26;
+            --bg-card:     #0d1a4a;
+            --glow-color:  rgba(37,99,235,0.1);
+        }
+    </style>
+</head>
+<body class="font-inter">
+    <div id="toast-container"></div>
+    <div id="purchase-notif-container"></div>
+
+    
+
+<!-- ══ NAVBAR ══ -->
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:50;background:linear-gradient(180deg, rgba(10,20,66,.97), rgba(5,12,38,.95));backdrop-filter:blur(14px);border-bottom:1px solid rgba(56,189,248,.22);box-shadow:0 2px 20px rgba(37,99,235,.12);">
+  <div style="max-width:1200px;margin:0 auto;padding:0 16px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;">
+
+      <!-- Logo -->
+      <a href="/" style="display:flex;align-items:center;text-decoration:none;flex-shrink:0;">
+        <img src="https://files.catbox.moe/kgo0k4.jpg" alt="SANJI NEWERA" style="height:48px;width:auto;object-fit:contain;">
+      </a>
+
+      <!-- Right buttons -->
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;margin-left:auto;">
+        <!-- Search icon (semua ukuran layar) -->
+        <button onclick="openSearch()" style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+          <iconify-icon icon="mdi:magnify" style="color:rgba(148,163,184,.7);font-size:18px;"></iconify-icon>
+        </button>
+        
+        <!-- Mobile: hanya MASUK saja -->
+        <a href="#login" style="padding:7px 12px;border-radius:8px;font-size:12px;font-weight:700;color:rgba(148,163,184,.8);border:1px solid rgba(255,255,255,.1);text-decoration:none;white-space:nowrap;">MASUK</a>
+        <!-- Desktop: tambah DAFTAR -->
+        <a href="#register" class="nav-btn-desktop" style="padding:8px 14px;border-radius:8px;font-size:12px;font-weight:800;color:#fff;background:#2563eb;text-decoration:none;white-space:nowrap;">DAFTAR</a>
+        
+        <button onclick="openMenu()" style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(37,99,235,.18);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
+          <iconify-icon icon="mdi:menu" style="color:rgba(148,163,184,.7);font-size:20px;"></iconify-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO BANNER CAROUSEL ══ -->
+<div style="padding-top:68px;">
+  <div id="carousel-wrap" style="position:relative;overflow:hidden;height:clamp(180px,40vw,290px);background:#050c26;border-bottom:1px solid rgba(37,99,235,.25);user-select:none;">
+    <div id="carousel-track" style="display:flex;height:100%;transition:transform .52s cubic-bezier(.4,0,.2,1);will-change:transform;">
+      <!-- DEFAULT SLIDE -->
+      <div id="c-slide-default" style="flex:0 0 100%;position:relative;overflow:hidden;background:linear-gradient(135deg,#050c26 0%,#0d1a4a 55%,#050c26 100%);">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 15% 50%,rgba(37,99,235,.35) 0%,transparent 70%);pointer-events:none;z-index:1;"></div>
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse 50% 80% at 85% 50%,rgba(99,102,241,.2) 0%,transparent 70%);pointer-events:none;z-index:1;"></div>
+        <div style="position:relative;z-index:10;height:100%;display:flex;flex-direction:column;justify-content:center;padding:clamp(14px,4vw,28px) clamp(18px,6vw,52px);max-width:640px;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+            <span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:9px;font-weight:900;background:rgba(16,185,129,.18);border:1px solid rgba(16,185,129,.45);color:#34d399;letter-spacing:.05em;">
+              <span style="width:6px;height:6px;border-radius:50%;background:#34d399;animation:blink 1.4s infinite;flex-shrink:0;"></span> LIVE
+            </span>
+            <span style="font-size:9px;font-weight:700;color:#60a5fa;letter-spacing:2px;text-transform:uppercase;">TOP 1 VIP MODS</span>
+          </div>
+          <div style="font-weight:900;color:#fff;line-height:1.05;margin-bottom:6px;font-size:clamp(22px,6vw,50px);text-shadow:0 0 32px rgba(37,99,235,.7);">BUY KEY GAME</div>
+          <div style="font-weight:900;margin-bottom:14px;font-size:clamp(13px,3.5vw,26px);background:linear-gradient(90deg,#fbbf24,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">PALING MURAH & AMAN!</div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <a href="#games" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:12px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#fbbf24,#f97316);text-decoration:none;box-shadow:0 3px 14px rgba(251,191,36,.4);">
+              <iconify-icon icon="mdi:shopping" style="font-size:13px;"></iconify-icon> BUY KEY GAME SEKARANG!
+            </a>
+            <a href="/invoice" style="display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:12px;font-size:11px;font-weight:700;color:#94a3b8;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);text-decoration:none;">
+              <iconify-icon icon="mdi:package-variant-closed" style="font-size:12px;"></iconify-icon> Cek Pesanan
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Dots -->
+    <div id="carousel-dots" style="position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;z-index:20;">
+      <div class="c-dot active"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MARQUEE ══ -->
+<div style="background:rgba(37,99,235,.1);border-top:1px solid rgba(37,99,235,.2);border-bottom:1px solid rgba(37,99,235,.2);overflow:hidden;padding:7px 0;">
+  <div style="display:flex;gap:40px;white-space:nowrap;animation:marqueeAnim 25s linear infinite;">
+    <span style="font-size:11px;font-weight:700;color:#93c5fd;flex-shrink:0;">🎮 Selamat Datang di <strong style="color:#fff;">SANJI NEWERA</strong> &nbsp;|&nbsp; Top 1 VIP Mods Terbaik Di Indonesia 🚀</span>
+    <span style="font-size:11px;font-weight:700;color:#fbbf24;flex-shrink:0;">⚡ PROSES INSTAN 0.01 DETIK</span>
+    <span style="font-size:11px;font-weight:700;color:#4ade80;flex-shrink:0;">🛡️ 100% AMAN & BERGARANSI</span>
+    <span style="font-size:11px;font-weight:700;color:#93c5fd;flex-shrink:0;">🤖 SISTEM OTOMATIS 24 JAM</span>
+    <span style="font-size:11px;font-weight:700;color:#c084fc;flex-shrink:0;">⭐ TRUSTED BY THOUSANDS OF USERS</span>
+    <span style="font-size:11px;font-weight:700;color:#fb923c;flex-shrink:0;">💼 OPEN RESELLER & DROPSHIP</span>
+    <!-- repeat -->
+    <span style="font-size:11px;font-weight:700;color:#93c5fd;flex-shrink:0;">🎮 Selamat Datang di <strong style="color:#fff;">SANJI NEWERA</strong> &nbsp;|&nbsp; Top 1 VIP Mods Terbaik Di Indonesia 🚀</span>
+    <span style="font-size:11px;font-weight:700;color:#fbbf24;flex-shrink:0;">⚡ PROSES INSTAN 0.01 DETIK</span>
+    <span style="font-size:11px;font-weight:700;color:#4ade80;flex-shrink:0;">🛡️ 100% AMAN & BERGARANSI</span>
+    <span style="font-size:11px;font-weight:700;color:#93c5fd;flex-shrink:0;">🤖 SISTEM OTOMATIS 24 JAM</span>
+    <span style="font-size:11px;font-weight:700;color:#c084fc;flex-shrink:0;">⭐ TRUSTED BY THOUSANDS OF USERS</span>
+    <span style="font-size:11px;font-weight:700;color:#fb923c;flex-shrink:0;">💼 OPEN RESELLER & DROPSHIP</span>
+  </div>
+</div>
+
+<!-- ══ SEARCH + FILTER ══ -->
+<div id="games" style="padding:16px 16px 0;max-width:1200px;margin:0 auto;">
+
+  <!-- Filter pills -->
+  <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;-ms-overflow-style:none;">
+    <button onclick="filterProducts('all')" class="fpill active" data-pf="all"
+            style="flex-shrink:0;padding:8px 18px;border-radius:8px;font-size:12px;font-weight:700;border:none;cursor:pointer;white-space:nowrap;background:#2563eb;color:#fff;">
+      SEMUA
+    </button>
+    
+    
+    <button onclick="filterProducts('freefire')" class="fpill" data-pf="freefire"
+            style="flex-shrink:0;padding:8px 18px;border-radius:8px;font-size:12px;font-weight:600;border:1px solid rgba(37,99,235,.3);cursor:pointer;white-space:nowrap;background:rgba(13,26,77,.8);color:rgba(148,163,184,.8);">
+      FREE FIRE
+    </button>
+    
+    <button onclick="filterProducts('8ballpool')" class="fpill" data-pf="8ballpool"
+            style="flex-shrink:0;padding:8px 18px;border-radius:8px;font-size:12px;font-weight:600;border:1px solid rgba(37,99,235,.3);cursor:pointer;white-space:nowrap;background:rgba(13,26,77,.8);color:rgba(148,163,184,.8);">
+      8 BALL POOL
+    </button>
+    
+  </div>
+</div>
+
+
+
+<!-- ══ SEMUA PRODUK — 2 KOLOM BESAR DI MOBILE ══ -->
+<div style="padding:16px;max-width:1200px;margin:0 auto;padding-bottom:40px;">
+
+  <div id="product-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705382132-file_00000000fdf471fabca33163fef19284.webp" alt="DRIP CLIENT"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+        <span style="position:absolute;top:8px;right:8px;z-index:10;font-size:8px;font-weight:800;padding:3px 7px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#4ade80;border:1px solid rgba(34,197,94,.3);letter-spacing:.03em;">ANDROID</span>
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#f87171;border:1px solid #f8717155;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#f87171;box-shadow:0 0 4px #f87171;flex-shrink:0;"></span>Offline
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">DRIP CLIENT</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">86</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705428751-file_00000000fdf471fabca33163fef19284.webp" alt="DRIP PROXY"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+        <span style="position:absolute;top:8px;right:8px;z-index:10;font-size:8px;font-weight:800;padding:3px 7px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#4ade80;border:1px solid rgba(34,197,94,.3);letter-spacing:.03em;">ANDROID</span>
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#f87171;border:1px solid #f8717155;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#f87171;box-shadow:0 0 4px #f87171;flex-shrink:0;"></span>Offline
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">DRIP PROXY</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">25</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705485249-file_00000000b36471fab9915b4e268ac081.webp" alt="HG CHEAT"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+        <span style="position:absolute;top:8px;right:8px;z-index:10;font-size:8px;font-weight:800;padding:3px 7px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#4ade80;border:1px solid rgba(34,197,94,.3);letter-spacing:.03em;">ANDROID</span>
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#4ade80;border:1px solid #4ade8055;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#4ade80;box-shadow:0 0 4px #4ade80;flex-shrink:0;"></span>Online
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">HG CHEAT</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">101</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784260958335-file_00000000057c71fb9d4eed8a2e4ec877.webp" alt="PRIME HOOK"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+        <span style="position:absolute;top:8px;right:8px;z-index:10;font-size:8px;font-weight:800;padding:3px 7px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#4ade80;border:1px solid rgba(34,197,94,.3);letter-spacing:.03em;">ANDROID</span>
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#c084fc;border:1px solid #c084fc55;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#c084fc;box-shadow:0 0 4px #c084fc;flex-shrink:0;"></span>Unknown
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">PRIME HOOK</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">20</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261035554-file_00000000e10871fab17eeb806f5554f1.webp" alt="FLUORITE IOS FF"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+        <span style="position:absolute;top:8px;right:8px;z-index:10;font-size:8px;font-weight:800;padding:3px 7px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#93c5fd;border:1px solid rgba(59,130,246,.35);letter-spacing:.03em;">iOS</span>
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#f87171;border:1px solid #f8717155;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#f87171;box-shadow:0 0 4px #f87171;flex-shrink:0;"></span>Offline
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">FLUORITE IOS FF</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">2.1K</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784425524264-file_00000000344871fba2f839ec71d6b7fc.webp" alt="GBOX"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+        <span style="position:absolute;top:8px;right:8px;z-index:10;font-size:8px;font-weight:800;padding:3px 7px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#93c5fd;border:1px solid rgba(59,130,246,.35);letter-spacing:.03em;">iOS</span>
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#4ade80;border:1px solid #4ade8055;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#4ade80;box-shadow:0 0 4px #4ade80;flex-shrink:0;"></span>Online
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">GBOX</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">2</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784427390171-file_00000000f9bc720799ea3c07318cbcbe.webp" alt="MIGUL IOS PRO"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+        <span style="position:absolute;top:8px;right:8px;z-index:10;font-size:8px;font-weight:800;padding:3px 7px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#93c5fd;border:1px solid rgba(59,130,246,.35);letter-spacing:.03em;">iOS</span>
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#f87171;border:1px solid #f8717155;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#f87171;box-shadow:0 0 4px #f87171;flex-shrink:0;"></span>Offline
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">MIGUL IOS PRO</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">7</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784427451636-file_00000000c85c71fa8a42f1b1db6923c6.webp" alt="MIGUL LITE"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+        <span style="position:absolute;top:8px;right:8px;z-index:10;font-size:8px;font-weight:800;padding:3px 7px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#93c5fd;border:1px solid rgba(59,130,246,.35);letter-spacing:.03em;">iOS</span>
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#f87171;border:1px solid #f8717155;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#f87171;box-shadow:0 0 4px #f87171;flex-shrink:0;"></span>Offline
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">MIGUL LITE</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">1</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786979843085-file_00000000b84c71fa9f79889f1c34aca5.webp" alt="PATO ORANGE"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#4ade80;border:1px solid #4ade8055;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#4ade80;box-shadow:0 0 4px #4ade80;flex-shrink:0;"></span>Online
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">PATO ORANGE</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">5</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261260788-file_00000000909472079324383b0a941c8f.webp" alt="PATO BLUE"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#4ade80;border:1px solid #4ade8055;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#4ade80;box-shadow:0 0 4px #4ade80;flex-shrink:0;"></span>Online
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">PATO BLUE</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">4</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="root"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261286503-file_000000002f487206a307c73a89545ca9.webp" alt="BR MODS ROOT"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#c084fc;border:1px solid #c084fc55;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#c084fc;box-shadow:0 0 4px #c084fc;flex-shrink:0;"></span>Unknown
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">BR MODS ROOT</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">2.6K</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261315135-file_000000002f487206a307c73a89545ca9.webp" alt="BR MODS PC"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#c084fc;border:1px solid #c084fc55;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#c084fc;box-shadow:0 0 4px #c084fc;flex-shrink:0;"></span>Unknown
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">BR MODS PC</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">4.5K</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786979989912-file_00000000b36471fab9915b4e268ac081.webp" alt="HG PROXY"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+        <span style="position:absolute;top:8px;right:8px;z-index:10;font-size:8px;font-weight:800;padding:3px 7px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#4ade80;border:1px solid rgba(34,197,94,.3);letter-spacing:.03em;">ANDROID</span>
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#f87171;border:1px solid #f8717155;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#f87171;box-shadow:0 0 4px #f87171;flex-shrink:0;"></span>Offline
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">HG PROXY</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">11</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786980080955-file_00000000576481faa4ff5069adbb7632.webp" alt="PLUGIN ALL GAME"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+        <span style="position:absolute;top:8px;right:8px;z-index:10;font-size:8px;font-weight:800;padding:3px 7px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#4ade80;border:1px solid rgba(34,197,94,.3);letter-spacing:.03em;">ANDROID</span>
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#4ade80;border:1px solid #4ade8055;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#4ade80;box-shadow:0 0 4px #4ade80;flex-shrink:0;"></span>Online
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">PLUGIN ALL GAME</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">1</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786755128618-file_000000008e288207831db508647a890f.webp" alt="BALA MODS"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+        <span style="position:absolute;top:8px;right:8px;z-index:10;font-size:8px;font-weight:800;padding:3px 7px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#4ade80;border:1px solid rgba(34,197,94,.3);letter-spacing:.03em;">ANDROID</span>
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#4ade80;border:1px solid #4ade8055;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#4ade80;box-shadow:0 0 4px #4ade80;flex-shrink:0;"></span>Online
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">BALA MODS</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">3</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+
+    <div class="pcard" data-category="freefire"
+         onclick="openPaymentFromCard(event, this)"
+         style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
+
+      <!-- Gambar — box-art penuh, rasio konsisten -->
+      <div style="position:relative;aspect-ratio:1/1;overflow:hidden;background:#060a20;">
+        
+        <img src="https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786755278667-file_0000000019b48207851d85fe819a462c.webp" alt="PROXY IOS"
+             style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
+          <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
+        </div>
+        
+
+        <!-- gradient bawah, gelap solid ke arah info -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,#0a1030 0%,rgba(10,16,48,.15) 38%,transparent 62%);pointer-events:none;"></div>
+
+        <!-- Platform kanan atas — pill kaca -->
+        
+        <span style="position:absolute;top:8px;right:8px;z-index:10;font-size:8px;font-weight:800;padding:3px 7px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#93c5fd;border:1px solid rgba(59,130,246,.35);letter-spacing:.03em;">iOS</span>
+        
+
+        <!-- Status operasional kiri atas — titik kelap-kelip + label -->
+        <span style="position:absolute;top:8px;left:8px;z-index:10;display:flex;align-items:center;gap:4px;font-size:8px;font-weight:800;padding:3px 7px 3px 6px;border-radius:20px;background:rgba(6,10,32,.65);backdrop-filter:blur(4px);color:#4ade80;border:1px solid #4ade8055;letter-spacing:.03em;">
+          <span class="op-status-dot" style="width:5px;height:5px;border-radius:50%;background:#4ade80;box-shadow:0 0 4px #4ade80;flex-shrink:0;"></span>Online
+        </span>
+
+        <!-- Nama produk overlay di atas gambar, bawah -->
+        <div style="position:absolute;left:9px;right:9px;bottom:8px;z-index:10;font-weight:800;font-size:12px;color:#fff;line-height:1.28;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-shadow:0 2px 6px rgba(0,0,0,.6);">PROXY IOS</div>
+      </div>
+
+      <!-- Info - HARGA DIHAPUS sesuai referensi -->
+      <div style="padding:9px 10px 10px;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <span style="font-size:9px;color:rgba(148,163,184,.45);">Terjual <strong style="color:rgba(148,163,184,.7);">1</strong></span>
+        </div>
+        
+        <button style="width:100%;padding:8px 0;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;display:flex;align-items:center;justify-content:center;gap:5px;cursor:pointer;">
+          <iconify-icon icon="mdi:shopping" style="font-size:12px;"></iconify-icon> Beli
+        </button>
+        
+      </div>
+    </div>
+
+    
+  </div>
+
+  
+
+  
+</div>
+
+<!-- ══ ARCADE CENTER PROMO ══ -->
+
+
+<!-- ══ TRUST BADGES ══ -->
+<div style="background:rgba(13,26,77,.5);border-top:1px solid rgba(37,99,235,.15);border-bottom:1px solid rgba(37,99,235,.15);padding:16px;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;">
+
+    <div style="display:flex;align-items:center;gap:10px;padding:12px;border-radius:10px;background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.18);">
+      <div style="width:36px;height:36px;border-radius:8px;background:rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <iconify-icon icon="mdi:shield-check" style="color:#60a5fa;font-size:18px;"></iconify-icon>
+      </div>
+      <div><div style="font-size:11px;font-weight:900;color:#fff;">100% AMAN</div><div style="font-size:9px;color:rgba(148,163,184,.5);margin-top:2px;">GARANSI AKUN AMAN</div></div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:10px;padding:12px;border-radius:10px;background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.18);">
+      <div style="width:36px;height:36px;border-radius:8px;background:rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <iconify-icon icon="mdi:lightning-bolt" style="color:#fbbf24;font-size:18px;"></iconify-icon>
+      </div>
+      <div><div style="font-size:11px;font-weight:900;color:#fff;">PROSES CEPAT</div><div style="font-size:9px;color:rgba(148,163,184,.5);margin-top:2px;">INSTAN 0-1 MENIT</div></div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:10px;padding:12px;border-radius:10px;background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.18);">
+      <div style="width:36px;height:36px;border-radius:8px;background:rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <iconify-icon icon="mdi:headset" style="color:#a78bfa;font-size:18px;"></iconify-icon>
+      </div>
+      <div><div style="font-size:11px;font-weight:900;color:#fff;">24/7 SUPPORT</div><div style="font-size:9px;color:rgba(148,163,184,.5);margin-top:2px;">FAST RESPONSE</div></div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:10px;padding:12px;border-radius:10px;background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.18);">
+      <div style="width:36px;height:36px;border-radius:8px;background:rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <iconify-icon icon="mdi:star" style="color:#34d399;font-size:18px;"></iconify-icon>
+      </div>
+      <div><div style="font-size:11px;font-weight:900;color:#fff;">TRUSTED</div><div style="font-size:9px;color:rgba(148,163,184,.5);margin-top:2px;">RIBUAN+ PENGGUNA</div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ RESELLER BANNER ══ -->
+
+
+<!-- ══ TOP LEADERBOARD — DATA ASLI DARI TRANSAKSI ══ -->
+
+<div style="padding:20px 16px 8px;max-width:1200px;margin:0 auto;">
+  <div style="text-align:center;margin-bottom:18px;">
+    <span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:10px;font-weight:800;color:#fbbf24;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);margin-bottom:10px;">
+      <iconify-icon icon="mdi:trophy" style="font-size:13px;"></iconify-icon> TOP LEADERBOARD
+    </span>
+    <h2 style="font-size:18px;font-weight:900;color:#fff;margin:0;">Top <span style="background:linear-gradient(90deg,#38bdf8,#818cf8);-webkit-background-clip:text;background-clip:text;color:transparent;">Pembeli</span></h2>
+    <p style="font-size:11px;color:rgba(148,163,184,.5);margin:4px 0 0;">Pengguna paling aktif bulan ini</p>
+  </div>
+
+  <div style="display:flex;justify-content:center;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:8px;">
+    
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 18px;border-radius:14px;background:#0a1030;border:1px solid rgba(251,191,36,.4);box-shadow:0 0 24px rgba(251,191,36,.15);min-width:110px;position:relative;">
+      
+      <iconify-icon icon="mdi:crown" style="position:absolute;top:-16px;font-size:22px;color:#fbbf24;filter:drop-shadow(0 0 6px rgba(251,191,36,.6));"></iconify-icon>
+      
+      <div class="lb-avatar" style="width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#38bdf8);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;color:#fff;border:2px solid #fbbf24;box-shadow:0 0 16px rgba(251,191,36,.4);">
+        PA
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:12px;font-weight:800;color:#fff;">Parji</div>
+        <div style="font-size:10px;color:#38bdf8;font-weight:700;">Rp 243.000</div>
+      </div>
+      <span style="font-size:9px;font-weight:800;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.05);color:rgba(148,163,184,.7);">#1</span>
+    </div>
+    
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 18px;border-radius:14px;background:#0a1030;border:1px solid rgba(56,130,246,.16);min-width:110px;position:relative;">
+      
+      <div class="lb-avatar" style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a78bfa);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;color:#fff;border:2px solid #94a3b8;">
+        GA
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:12px;font-weight:800;color:#fff;">galang152hz</div>
+        <div style="font-size:10px;color:#38bdf8;font-weight:700;">Rp 138.000</div>
+      </div>
+      <span style="font-size:9px;font-weight:800;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.05);color:rgba(148,163,184,.7);">#2</span>
+    </div>
+    
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 18px;border-radius:14px;background:#0a1030;border:1px solid rgba(56,130,246,.16);min-width:110px;position:relative;">
+      
+      <div class="lb-avatar" style="width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#0891b2,#22d3ee);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;color:#fff;border:2px solid #c2703d;">
+        RA
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:12px;font-weight:800;color:#fff;">Ramon</div>
+        <div style="font-size:10px;color:#38bdf8;font-weight:700;">Rp 108.000</div>
+      </div>
+      <span style="font-size:9px;font-weight:800;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.05);color:rgba(148,163,184,.7);">#3</span>
+    </div>
+    
+  </div>
+
+  
+  <div style="max-width:400px;margin:14px auto 0;display:flex;flex-direction:column;gap:6px;">
+    
+    <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.02);border:1px solid rgba(56,130,246,.1);">
+      <span style="font-size:11px;font-weight:800;color:rgba(148,163,184,.5);width:18px;flex-shrink:0;">#4</span>
+      <div style="width:28px;height:28px;border-radius:50%;background:rgba(37,99,235,.15);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#93c5fd;flex-shrink:0;">EM</div>
+      <span style="font-size:11px;font-weight:700;color:#e2e8f0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Emsde</span>
+      <span style="font-size:10px;font-weight:700;color:#38bdf8;">Rp 49.100</span>
+    </div>
+    
+    <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.02);border:1px solid rgba(56,130,246,.1);">
+      <span style="font-size:11px;font-weight:800;color:rgba(148,163,184,.5);width:18px;flex-shrink:0;">#5</span>
+      <div style="width:28px;height:28px;border-radius:50%;background:rgba(37,99,235,.15);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#93c5fd;flex-shrink:0;">JA</div>
+      <span style="font-size:11px;font-weight:700;color:#e2e8f0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">japar</span>
+      <span style="font-size:10px;font-weight:700;color:#38bdf8;">Rp 105.000</span>
+    </div>
+    
+    <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.02);border:1px solid rgba(56,130,246,.1);">
+      <span style="font-size:11px;font-weight:800;color:rgba(148,163,184,.5);width:18px;flex-shrink:0;">#6</span>
+      <div style="width:28px;height:28px;border-radius:50%;background:rgba(37,99,235,.15);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#93c5fd;flex-shrink:0;">LU</div>
+      <span style="font-size:11px;font-weight:700;color:#e2e8f0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">LUTFIVANGUARD</span>
+      <span style="font-size:10px;font-weight:700;color:#38bdf8;">Rp 98.850</span>
+    </div>
+    
+    <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.02);border:1px solid rgba(56,130,246,.1);">
+      <span style="font-size:11px;font-weight:800;color:rgba(148,163,184,.5);width:18px;flex-shrink:0;">#7</span>
+      <div style="width:28px;height:28px;border-radius:50%;background:rgba(37,99,235,.15);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#93c5fd;flex-shrink:0;">GU</div>
+      <span style="font-size:11px;font-weight:700;color:#e2e8f0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Guru</span>
+      <span style="font-size:10px;font-weight:700;color:#38bdf8;">Rp 86.000</span>
+    </div>
+    
+    <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;background:rgba(255,255,255,.02);border:1px solid rgba(56,130,246,.1);">
+      <span style="font-size:11px;font-weight:800;color:rgba(148,163,184,.5);width:18px;flex-shrink:0;">#8</span>
+      <div style="width:28px;height:28px;border-radius:50%;background:rgba(37,99,235,.15);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#93c5fd;flex-shrink:0;">MA</div>
+      <span style="font-size:11px;font-weight:700;color:#e2e8f0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">mantapaja1</span>
+      <span style="font-size:10px;font-weight:700;color:#38bdf8;">Rp 73.000</span>
+    </div>
+    
+  </div>
+  
+
+  <div style="text-align:center;margin-top:16px;">
+    <a href="/leaderboard" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:10px;font-size:11px;font-weight:800;color:#93c5fd;background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.25);text-decoration:none;">
+      <iconify-icon icon="mdi:podium" style="font-size:13px;"></iconify-icon> Lihat Papan Skor Lengkap
+    </a>
+  </div>
+</div>
+
+
+<!-- ══ FOOTER ══ -->
+<footer style="background:linear-gradient(180deg,#050c26,#0a1442);border-top:1px solid rgba(56,189,248,.2);padding:40px 16px 30px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px;">
+
+      <!-- Brand -->
+      <div style="grid-column:1/-1;">
+        <div style="display:flex;align-items:center;margin-bottom:10px;">
+          <img src="https://files.catbox.moe/kgo0k4.jpg" alt="SANJI NEWERA" style="height:36px;width:auto;object-fit:contain;">
+        </div>
+        <p style="font-size:10px;color:rgba(148,163,184,.45);line-height:1.6;margin-bottom:12px;">SANJI NEWERA menyediakan layanan key mod aplikasi premium terbaik #1 indonesia....</p>
+        <div style="display:flex;gap:8px;">
+          
+          <a href="https://wa.me/6283896539967" target="_blank" style="width:32px;height:32px;border-radius:8px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.2);display:flex;align-items:center;justify-content:center;text-decoration:none;">
+            <iconify-icon icon="mdi:whatsapp" style="color:#4ade80;font-size:15px;"></iconify-icon>
+          </a>
+          
+          
+          <a href="https://whatsapp.com/channel/0029VbCqAsoJP20yxIjwhV1i" target="_blank" style="width:32px;height:32px;border-radius:8px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.18);display:flex;align-items:center;justify-content:center;text-decoration:none;" title="Saluran WA">
+            <iconify-icon icon="mdi:broadcast" style="color:#4ade80;font-size:15px;"></iconify-icon>
+          </a>
+          
+          
+          <a href="https://t.me/SanjiNewEra" target="_blank" style="width:32px;height:32px;border-radius:8px;background:rgba(37,99,235,.1);border:1px solid rgba(37,99,235,.22);display:flex;align-items:center;justify-content:center;text-decoration:none;" title="Grup Telegram">
+            <iconify-icon icon="mdi:account-group" style="color:#60a5fa;font-size:15px;"></iconify-icon>
+          </a>
+          
+          
+          <a href="https://t.me/SanjiNewEra" target="_blank" style="width:32px;height:32px;border-radius:8px;background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.22);display:flex;align-items:center;justify-content:center;text-decoration:none;">
+            <iconify-icon icon="mdi:telegram" style="color:#60a5fa;font-size:15px;"></iconify-icon>
+          </a>
+          
+        </div>
+      </div>
+
+      <!-- Informasi -->
+      <div>
+        <h4 style="font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#2563eb;margin-bottom:12px;">INFORMASI</h4>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <a href="/invoice" style="font-size:11px;font-weight:600;color:rgba(148,163,184,.5);text-decoration:none;">Cara Beli</a>
+          <a href="/invoice" style="font-size:11px;font-weight:600;color:rgba(148,163,184,.5);text-decoration:none;">Bantuan / FAQ</a>
+          <a href="/invoice" style="font-size:11px;font-weight:600;color:rgba(148,163,184,.5);text-decoration:none;">Syarat Ketentuan</a>
+        </div>
+      </div>
+
+      <!-- Layanan -->
+      <div>
+        <h4 style="font-size:9px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;color:#2563eb;margin-bottom:12px;">LAYANAN</h4>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <a href="#popular-products" style="font-size:11px;font-weight:600;color:rgba(148,163,184,.5);text-decoration:none;">Produk Populer</a>
+          <a href="/invoice" style="font-size:11px;font-weight:600;color:rgba(148,163,184,.5);text-decoration:none;">Cek Riwayat</a>
+          
+          <a href="/reseller" style="font-size:11px;font-weight:600;color:rgba(148,163,184,.5);text-decoration:none;">Kerjasama</a>
+          
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top:1px solid rgba(37,99,235,.15);padding-top:16px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+      <p style="font-size:9px;font-weight:600;color:rgba(148,163,184,.35);margin:0;">&copy; 2026 SANJI NEWERA. All rights reserved.</p>
+      <div style="display:flex;align-items:center;gap:5px;font-size:9px;font-weight:600;color:rgba(148,163,184,.35);">
+        <span style="width:6px;height:6px;border-radius:50%;background:rgba(34,197,94,.6);"></span> Online
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Notifikasi pembelian user lain -->
+<div id="purchase-toast" style="position:fixed;bottom:22px;left:18px;z-index:39;max-width:270px;display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:14px;background:rgba(13,26,77,.97);backdrop-filter:blur(10px);border:1px solid rgba(37,99,235,.3);box-shadow:0 8px 28px rgba(0,0,0,.35);transform:translateY(140%);opacity:0;transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .4s ease;pointer-events:none;">
+  <div id="pt-avatar" style="flex-shrink:0;width:34px;height:34px;border-radius:10px;background:rgba(37,99,235,.18);border:1px solid rgba(37,99,235,.35);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#60a5fa;">Y</div>
+  <div style="flex:1;min-width:0;">
+    <div id="pt-text" style="font-size:11px;font-weight:600;color:#e2e8f0;line-height:1.4;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;"></div>
+    <div id="pt-time" style="font-size:9px;color:rgba(148,163,184,.55);margin-top:3px;display:flex;align-items:center;gap:4px;">
+      <iconify-icon icon="mdi:check-decagram" style="color:#4ade80;font-size:10px;"></iconify-icon><span></span>
+    </div>
+  </div>
+  <button onclick="hidePurchaseToast()" style="flex-shrink:0;width:18px;height:18px;border-radius:50%;background:rgba(255,255,255,.06);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;pointer-events:auto;">
+    <iconify-icon icon="mdi:close" style="color:rgba(148,163,184,.6);font-size:11px;"></iconify-icon>
+  </button>
+</div>
+
+<!-- Floating WA -->
+
+<a href="https://wa.me/6283896539967" target="_blank"
+   style="position:fixed;bottom:22px;right:18px;z-index:40;width:48px;height:48px;border-radius:50%;background:#22c55e;box-shadow:0 4px 20px rgba(34,197,94,.4);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform .2s;"
+   onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+  <iconify-icon icon="mdi:whatsapp" style="color:#fff;font-size:24px;"></iconify-icon>
+</a>
+
+
+<!-- ══ STYLES ══ -->
+<style>
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes marqueeAnim{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes pulse{0%,100%{opacity:.6}50%{opacity:1}}
+@keyframes opStatusBlink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.8)}}
+.op-status-dot{animation:opStatusBlink 1.4s ease-in-out infinite;}
+@keyframes lbGlow{0%,100%{box-shadow:0 0 16px rgba(251,191,36,.4)}50%{box-shadow:0 0 26px rgba(251,191,36,.75)}}
+.lb-avatar{animation:none;}
+.lb-avatar[style*="0 0 16px"]{animation:lbGlow 1.8s ease-in-out infinite;}
+
+/* Carousel */
+#carousel-track>div{flex:0 0 100%;width:100%;height:100%;position:relative;overflow:hidden;}
+.c-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;flex-shrink:0;transition:all .35s cubic-bezier(.4,0,.2,1);}
+.c-dot.active{width:26px;border-radius:4px;background:linear-gradient(90deg,#38bdf8,#6366f1,#38bdf8);background-size:200% 100%;animation:dotShimmer 1.6s linear infinite;box-shadow:0 0 10px rgba(99,102,241,.6);}
+@keyframes dotShimmer{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+
+/* Product grid: 3 col sm, 4 col lg, 5 col xl */
+/* nav-btn-desktop: hide on mobile, show on sm+ */
+.nav-btn-desktop{display:none;}
+@media(min-width:640px){
+  #product-grid{grid-template-columns:repeat(3,1fr);gap:14px;}
+  .nav-btn-desktop{display:inline-flex!important;}
+}
+@media(min-width:1024px){
+  #product-grid{grid-template-columns:repeat(4,1fr);}
+}
+@media(min-width:1280px){
+  #product-grid{grid-template-columns:repeat(5,1fr);}
+}
+
+/* Card hover — angkat, terangkan border, glow biru, zoom foto */
+.pcard:hover{border-color:rgba(56,189,248,.6)!important;transform:translateY(-4px)!important;box-shadow:0 10px 28px -8px rgba(37,99,235,.45)!important;}
+.pcard:hover img{transform:scale(1.06);}
+.pcard:active{transform:scale(.97)!important;opacity:.88;}
+
+/* Filter active */
+.fpill.active{background:#2563eb!important;color:#fff!important;border-color:#2563eb!important;}
+
+/* Trust badges: 4 col on sm+ */
+@media(min-width:640px){
+  .trust-grid{grid-template-columns:repeat(4,1fr)!important;}
+}
+
+/* Scrollbar hidden */
+#popular-track::-webkit-scrollbar{display:none;}
+</style>
+
+<!-- ══ SCRIPTS ══ -->
+<script>
+/* Carousel */
+(function(){
+  let slides=[],cur=0,total=1,timer=null;
+  const IV=4500;
+  async function init(){
+    try{const r=await fetch('/api/banners');slides=await r.json();}catch{slides=[];}
+    const track=document.getElementById('carousel-track');
+    const dots=document.getElementById('carousel-dots');
+    if(!slides.length){total=1;return;}
+    document.getElementById('c-slide-default')?.remove();
+    track.innerHTML=slides.map((s,i)=>{
+      const cl=s.link&&s.link!=='/';
+      return`<div style="flex:0 0 100%;position:relative;overflow:hidden;background:#050c26;"${cl?` onclick="window.location='${s.link}'" style="flex:0 0 100%;position:relative;overflow:hidden;cursor:pointer;background:#050c26;"`:''}>
+        <img src="${s.imageUrl}" alt="" aria-hidden="true" loading="${i===0?'eager':'lazy'}"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(22px) brightness(.55);transform:scale(1.15);"
+             onerror="this.style.display='none'">
+        <img src="${s.imageUrl}" alt="${s.title||''}" loading="${i===0?'eager':'lazy'}"
+             style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:1;"
+             onerror="this.style.display='none'">
+        <div style="position:absolute;inset:0;background:linear-gradient(105deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.15) 55%,transparent 100%);z-index:2;"></div>
+        <div style="position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:center;padding:clamp(14px,4vw,30px) clamp(18px,6vw,50px);max-width:65%;">
+          ${s.title?`<div style="font-size:clamp(16px,4vw,38px);font-weight:900;color:#fff;line-height:1.1;text-shadow:0 2px 20px rgba(0,0,0,.8);">${s.title}</div>`:''}
+          ${s.subtitle?`<div style="font-size:clamp(10px,1.8vw,14px);color:rgba(255,255,255,.7);margin-top:6px;">${s.subtitle}</div>`:''}
+          ${cl?`<div style="display:inline-flex;align-items:center;gap:5px;margin-top:12px;padding:8px 18px;border-radius:10px;font-size:11px;font-weight:800;background:linear-gradient(135deg,#fbbf24,#f97316);color:#fff;width:fit-content;"><iconify-icon icon="mdi:arrow-right" style="font-size:12px;"></iconify-icon> Lihat Detail</div>`:''}
+        </div>
+      </div>`;
+    }).join('');
+    total=slides.length;
+    dots.innerHTML=slides.map((_,i)=>`<div class="c-dot${i===0?' active':''}" onclick="goSlide(${i})"></div>`).join('');
+    if(total>1){startAuto();addSwipe();}
+    goSlide(0);
+  }
+  window.goSlide=function(idx){if(total<=1)return;cur=((idx%total)+total)%total;document.getElementById('carousel-track').style.transform=`translateX(-${cur*100}%)`;document.querySelectorAll('.c-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));};
+  function startAuto(){clearInterval(timer);timer=setInterval(()=>goSlide(cur+1),IV);}
+  function addSwipe(){const w=document.getElementById('carousel-wrap');w.addEventListener('touchstart',e=>{clearInterval(timer);w._tx=e.touches[0].clientX;},{passive:true});w.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-w._tx;if(Math.abs(dx)>38)goSlide(cur+(dx<0?1:-1));startAuto();},{passive:true});}
+  document.addEventListener('DOMContentLoaded',init);
+})();
+
+/* Filter */
+function filterProducts(cat){
+  document.querySelectorAll('[data-category]').forEach(c=>{c.style.display=(cat==='all'||c.dataset.category===cat)?'':'none';});
+  document.querySelectorAll('.fpill').forEach(b=>{
+    const active=b.dataset.pf===cat;
+    b.classList.toggle('active',active);
+    if(active){b.style.background='#2563eb';b.style.color='#fff';b.style.borderColor='#2563eb';}
+    else{b.style.background='rgba(13,26,77,.8)';b.style.color='rgba(148,163,184,.8)';b.style.borderColor='rgba(37,99,235,.3)';}
+  });
+}
+
+/* Popular products */
+async function loadPopular(){
+  const track=document.getElementById('popular-track');
+  if(!track)return;
+  try{
+    const data=[{"id":"777b94d8-08ff-42c3-9a64-42681a189df7","name":"HG CHEAT","sold":101,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705485249-file_00000000b36471fab9915b4e268ac081.webp","items":[{"l":"HG CHEAT 1 DAYS","p":10000,"reseller_price":6500},{"l":"HG CHEAT 7 DAYS","p":30000,"reseller_price":20150},{"l":"HG CHEAT 10 DAYS","p":45000,"reseller_price":29250},{"l":"HG CHEAT 30 DAYS","p":99000,"reseller_price":64350}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705485249-file_00000000b36471fab9915b4e268ac081.webp","createdAt":"2026-07-03T09:09:11.017Z","platforms":["android"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"price":10000,"stockSource":"auto","resellerItemId":9,"reseller_price":6500},{"days":7,"price":30000,"stockSource":"auto","resellerItemId":78,"reseller_price":20150},{"days":10,"price":45000,"stockSource":"auto","resellerItemId":11,"reseller_price":29250},{"days":30,"price":99000,"stockSource":"auto","resellerItemId":43,"reseller_price":64350}],"resellerItemId":null,"operationalStatus":"online","stockCount":null},{"id":"ad36072c-6635-406c-942a-6bf56bf5ca69","name":"DRIP CLIENT","sold":86,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705382132-file_00000000fdf471fabca33163fef19284.webp","items":[{"l":"DRIP CLIENT 1 HARI","p":10000,"reseller_price":5000},{"l":"DRIP CLIENT 3 HARI","p":25000,"reseller_price":12500},{"l":"DRIP CLIENT 7 HARI","p":45000,"reseller_price":22500},{"l":"DRIP CLIENT 15 HARI","p":70000,"reseller_price":35000},{"l":"DRIP CLIENT 30 HARI","p":100000,"reseller_price":50000}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705382132-file_00000000fdf471fabca33163fef19284.webp","createdAt":"2026-07-03T09:01:54.537Z","platforms":["android"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"hari","price":10000,"stockSource":"auto","resellerItemId":5,"reseller_price":5000},{"days":3,"unit":"hari","price":25000,"stockSource":"auto","resellerItemId":44,"reseller_price":12500},{"days":7,"unit":"hari","price":45000,"stockSource":"auto","resellerItemId":6,"reseller_price":22500},{"days":15,"unit":"hari","price":70000,"stockSource":"auto","resellerItemId":7,"reseller_price":35000},{"days":30,"unit":"hari","price":100000,"stockSource":"auto","resellerItemId":8,"reseller_price":50000}],"resellerItemId":null,"operationalStatus":"offline","stockCount":null},{"id":"11c1bf90-a340-4db6-93a0-2932f36b5716","name":"DRIP PROXY","sold":25,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705428751-file_00000000fdf471fabca33163fef19284.webp","items":[{"l":"DRIP PROXY 1 HARI","p":10000,"reseller_price":5000},{"l":"DRIP PROXY 3 HARI","p":25000,"reseller_price":12500},{"l":"DRIP PROXY 7 HARI","p":45000,"reseller_price":22500},{"l":"DRIP PROXY 30 HARI","p":100000,"reseller_price":50000}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705428751-file_00000000fdf471fabca33163fef19284.webp","createdAt":"2026-07-03T09:05:47.478Z","platforms":["android"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"hari","price":10000,"stockSource":"auto","resellerItemId":null,"reseller_price":5000},{"days":3,"unit":"hari","price":25000,"stockSource":"auto","resellerItemId":null,"reseller_price":12500},{"days":7,"unit":"hari","price":45000,"stockSource":"auto","resellerItemId":null,"reseller_price":22500},{"days":30,"unit":"hari","price":100000,"stockSource":"auto","resellerItemId":94,"reseller_price":50000}],"resellerItemId":null,"operationalStatus":"offline","stockCount":null},{"id":"78267f33-a9f8-472e-9d47-d9e7f849e204","name":"PRIME HOOK","sold":20,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784260958335-file_00000000057c71fb9d4eed8a2e4ec877.webp","items":[{"l":"PRIME HOOK 1 DAYS","p":8000,"reseller_price":6000},{"l":"PRIME HOOK 3 DAYS","p":18000,"reseller_price":13500},{"l":"PRIME HOOK 7 DAYS","p":35000,"reseller_price":26250}],"status":"active","category":"freefire","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784260958335-file_00000000057c71fb9d4eed8a2e4ec877.webp","createdAt":"2026-07-03T09:12:29.518Z","platforms":["android"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"price":8000,"stockSource":"auto","resellerItemId":61,"reseller_price":6000},{"days":3,"price":18000,"stockSource":"auto","resellerItemId":62,"reseller_price":13500},{"days":7,"price":35000,"stockSource":"auto","resellerItemId":63,"reseller_price":26250}],"resellerItemId":null,"operationalStatus":"unknown","stockCount":null},{"id":"68894b75-3b12-4908-98bb-5d9200668f4d","name":"HG PROXY","sold":11,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786979989912-file_00000000b36471fab9915b4e268ac081.webp","items":[{"l":"HG PROXY 1 HARI","p":13000,"reseller_price":9100},{"l":"HG PROXY 7 HARI","p":30000,"reseller_price":21000},{"l":"HG PROXY 10 HARI","p":50000,"reseller_price":35000}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786979989912-file_00000000b36471fab9915b4e268ac081.webp","createdAt":"2026-07-21T06:42:30.937Z","platforms":["android"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"hari","price":13000,"stockSource":"auto","resellerItemId":93,"reseller_price":9100},{"days":7,"unit":"hari","price":30000,"stockSource":"auto","resellerItemId":98,"reseller_price":21000},{"days":10,"unit":"hari","price":50000,"stockSource":"auto","resellerItemId":99,"reseller_price":35000}],"operationalStatus":"offline","stockCount":null},{"id":"33a52322-fbf3-471a-82cd-5c070e927758","name":"MIGUL IOS PRO","sold":7,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784427390171-file_00000000f9bc720799ea3c07318cbcbe.webp","items":[{"l":"MIGUL IOS PRO 1 HARI","p":45000,"reseller_price":27000},{"l":"MIGUL IOS PRO 7 HARI","p":130000,"reseller_price":78000},{"l":"MIGUL IOS PRO 30 HARI","p":300000,"reseller_price":180000}],"status":"active","category":"freefire","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784427390171-file_00000000f9bc720799ea3c07318cbcbe.webp","createdAt":"2026-07-03T18:01:31.178Z","platforms":["ios"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"hari","price":45000,"stockSource":"auto","resellerItemId":74,"reseller_price":27000},{"days":7,"unit":"hari","price":130000,"stockSource":"auto","resellerItemId":75,"reseller_price":78000},{"days":30,"unit":"hari","price":300000,"stockSource":"auto","resellerItemId":76,"reseller_price":180000}],"resellerItemId":null,"operationalStatus":"offline","stockCount":null},{"id":"1fa721e7-a888-49e6-a95f-835bb3e6512e","name":"PATO ORANGE","sold":5,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786979843085-file_00000000b84c71fa9f79889f1c34aca5.webp","items":[{"l":"PATO ORANGE 3 HARI","p":35000,"reseller_price":24500},{"l":"PATO ORANGE 7 HARI","p":70000,"reseller_price":49000},{"l":"PATO ORANGE 15 HARI","p":100000,"reseller_price":70000},{"l":"PATO ORANGE 30 HARI","p":150000,"reseller_price":105000}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786979843085-file_00000000b84c71fa9f79889f1c34aca5.webp","createdAt":"2026-07-15T03:27:49.928Z","platforms":[],"stockMode":"auto","description":"","pricingOptions":[{"days":3,"unit":"hari","price":35000,"stockSource":"auto","resellerItemId":79,"reseller_price":24500},{"days":7,"unit":"hari","price":70000,"stockSource":"auto","resellerItemId":80,"reseller_price":49000},{"days":15,"unit":"hari","price":100000,"stockSource":"auto","resellerItemId":81,"reseller_price":70000},{"days":30,"unit":"hari","price":150000,"stockSource":"auto","resellerItemId":82,"reseller_price":105000}],"resellerItemId":null,"operationalStatus":"online","stockCount":null},{"id":"cb418254-b3af-4c36-ad2b-66d6976b3552","name":"PATO BLUE","sold":4,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261260788-file_00000000909472079324383b0a941c8f.webp","items":[{"l":"PATO BLUE 3 DAYS","p":25000,"reseller_price":17500},{"l":"PATO BLUE 7 DAYS","p":50000,"reseller_price":35000},{"l":"PATO BLUE 15 DAYS","p":80000,"reseller_price":56000},{"l":"PATO BLUE 30 DAYS","p":120000,"reseller_price":84000}],"status":"active","category":"freefire","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261260788-file_00000000909472079324383b0a941c8f.webp","createdAt":"2026-07-15T03:31:12.170Z","platforms":[],"stockMode":"auto","description":"","pricingOptions":[{"days":3,"price":25000,"stockSource":"auto","resellerItemId":12,"reseller_price":17500},{"days":7,"price":50000,"stockSource":"auto","resellerItemId":13,"reseller_price":35000},{"days":15,"price":80000,"stockSource":"auto","resellerItemId":14,"reseller_price":56000},{"days":30,"price":120000,"stockSource":"auto","resellerItemId":15,"reseller_price":84000}],"resellerItemId":12,"operationalStatus":"online","stockCount":null},{"id":"1365668f-9ba2-4e46-938c-004a7b43dde9","name":"BALA MODS","sold":3,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786755128618-file_000000008e288207831db508647a890f.webp","items":[{"l":"BALA MODS 1 DAYS","p":4000,"reseller_price":2800},{"l":"BALA MODS 3 DAYS","p":8250,"reseller_price":5775},{"l":"BALA MODS 6 DAYS","p":13200,"reseller_price":9240},{"l":"BALA MODS 12 DAYS","p":26400,"reseller_price":18480},{"l":"BALA MODS 1 DAYS","p":52800,"reseller_price":36960},{"l":"BALA MODS 2 DAYS","p":105600,"reseller_price":73920},{"l":"BALA MODS 3 DAYS","p":155800,"reseller_price":109060},{"l":"BALA MODS 7 DAYS","p":329000,"reseller_price":230300}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786755128618-file_000000008e288207831db508647a890f.webp","createdAt":"2026-08-15T00:52:09.151Z","platforms":["android"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"jam","price":4000,"stockSource":"auto","resellerItemId":113,"reseller_price":2800},{"days":3,"unit":"jam","price":8250,"stockSource":"auto","resellerItemId":114,"reseller_price":5775},{"days":6,"unit":"jam","price":13200,"stockSource":"auto","resellerItemId":115,"reseller_price":9240},{"days":12,"unit":"jam","price":26400,"stockSource":"auto","resellerItemId":116,"reseller_price":18480},{"days":1,"unit":"hari","price":52800,"stockSource":"auto","resellerItemId":117,"reseller_price":36960},{"days":2,"unit":"hari","price":105600,"stockSource":"auto","resellerItemId":118,"reseller_price":73920},{"days":3,"unit":"hari","price":155800,"stockSource":"auto","resellerItemId":119,"reseller_price":109060},{"days":7,"unit":"hari","price":329000,"stockSource":"auto","resellerItemId":121,"reseller_price":230300}],"operationalStatus":"online","stockCount":null},{"id":"bee36b10-a6c1-481c-b231-100866bc2e77","name":"GBOX","sold":2,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784425524264-file_00000000344871fba2f839ec71d6b7fc.webp","items":[{"l":"GBOX 365 DAYS","p":100000,"reseller_price":55000}],"status":"active","category":"freefire","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784425524264-file_00000000344871fba2f839ec71d6b7fc.webp","createdAt":"2026-07-03T09:22:54.698Z","platforms":["ios"],"stockMode":"auto","description":"","pricingOptions":[{"days":365,"price":100000,"stockSource":"auto","resellerItemId":28,"reseller_price":55000}],"resellerItemId":null,"operationalStatus":"online","stockCount":null},{"id":"746f7754-67d6-4707-81b5-900af891a566","name":"MIGUL LITE","sold":1,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784427451636-file_00000000c85c71fa8a42f1b1db6923c6.webp","items":[{"l":"MIGUL LITE 1 HARI","p":40000,"reseller_price":24000},{"l":"MIGUL LITE 7 HARI","p":110000,"reseller_price":66000},{"l":"MIGUL LITE 30 HARI","p":300000,"reseller_price":180000}],"status":"active","category":"freefire","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784427451636-file_00000000c85c71fa8a42f1b1db6923c6.webp","createdAt":"2026-07-15T03:15:18.418Z","platforms":["ios"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"hari","price":40000,"stockSource":"auto","resellerItemId":65,"reseller_price":24000},{"days":7,"unit":"hari","price":110000,"stockSource":"auto","resellerItemId":66,"reseller_price":66000},{"days":30,"unit":"hari","price":300000,"stockSource":"auto","resellerItemId":67,"reseller_price":180000}],"resellerItemId":null,"operationalStatus":"offline","stockCount":null},{"id":"17d4d34e-2d3e-4c66-8606-0498f0bbc9ba","name":"PLUGIN ALL GAME","sold":1,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786980080955-file_00000000576481faa4ff5069adbb7632.webp","items":[{"l":"PLUGIN ALL GAME 3 HARI","p":25000,"reseller_price":17500},{"l":"PLUGIN ALL GAME 7 HARI","p":50000,"reseller_price":35000},{"l":"PLUGIN ALL GAME 30 HARI","p":100000,"reseller_price":70000},{"l":"PLUGIN ALL GAME 60 HARI","p":160000,"reseller_price":112000},{"l":"PLUGIN ALL GAME 90 HARI","p":200000,"reseller_price":140000}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786980080955-file_00000000576481faa4ff5069adbb7632.webp","createdAt":"2026-07-31T06:07:13.283Z","platforms":["android"],"stockMode":"auto","description":"","pricingOptions":[{"days":3,"unit":"hari","price":25000,"stockSource":"auto","resellerItemId":null,"reseller_price":17500},{"days":7,"unit":"hari","price":50000,"stockSource":"auto","resellerItemId":null,"reseller_price":35000},{"days":30,"unit":"hari","price":100000,"stockSource":"auto","resellerItemId":null,"reseller_price":70000},{"days":60,"unit":"hari","price":160000,"stockSource":"auto","resellerItemId":null,"reseller_price":112000},{"days":90,"unit":"hari","price":200000,"stockSource":"auto","resellerItemId":null,"reseller_price":140000}],"operationalStatus":"online","stockCount":null},{"id":"d2eb9296-1ac9-4acc-b98b-577d6410858b","name":"PROXY IOS","sold":1,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786755278667-file_0000000019b48207851d85fe819a462c.webp","items":[{"l":"PROXY IOS 1 DAYS","p":35000,"reseller_price":19250},{"l":"PROXY IOS 7 DAYS","p":70000,"reseller_price":38500},{"l":"PROXY IOS 30 DAYS","p":135000,"reseller_price":74250}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786755278667-file_0000000019b48207851d85fe819a462c.webp","createdAt":"2026-08-15T00:54:39.225Z","platforms":["ios"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"hari","price":35000,"stockSource":"auto","resellerItemId":122,"reseller_price":19250},{"days":7,"unit":"hari","price":70000,"stockSource":"auto","resellerItemId":123,"reseller_price":38500},{"days":30,"unit":"hari","price":135000,"stockSource":"auto","resellerItemId":124,"reseller_price":74250}],"operationalStatus":"online","stockCount":null},{"id":"cdc02644-d526-425a-8681-2643ff0ab69e","name":"FLUORITE IOS FF","sold":0,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261035554-file_00000000e10871fab17eeb806f5554f1.webp","items":[{"l":"FLUORITE IOS FF 1 DAYS","p":50000,"reseller_price":27500},{"l":"FLUORITE IOS FF 7 DAYS","p":150000,"reseller_price":82500},{"l":"FLUORITE IOS FF 30 DAYS","p":350000,"reseller_price":192500}],"status":"active","category":"freefire","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261035554-file_00000000e10871fab17eeb806f5554f1.webp","createdAt":"2026-07-03T09:18:38.579Z","platforms":["ios"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"price":50000,"stockSource":"auto","resellerItemId":2,"reseller_price":27500},{"days":7,"price":150000,"stockSource":"auto","resellerItemId":null,"reseller_price":82500},{"days":30,"price":350000,"stockSource":"auto","resellerItemId":null,"reseller_price":192500}],"resellerItemId":null,"operationalStatus":"offline","stockCount":null},{"id":"41a8e644-3bd4-4ab5-8667-ed83126367db","name":"BR MODS ROOT","sold":0,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261286503-file_000000002f487206a307c73a89545ca9.webp","items":[{"l":"BR MODS ROOT 1 DAYS","p":12000,"reseller_price":10500},{"l":"BR MODS ROOT 7 DAYS","p":40000,"reseller_price":31500},{"l":"BR MODS ROOT 15 DAYS","p":80000,"reseller_price":70000},{"l":"BR MODS ROOT 30 DAYS","p":110000,"reseller_price":105000}],"status":"active","category":"root","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261286503-file_000000002f487206a307c73a89545ca9.webp","createdAt":"2026-07-16T09:54:03.999Z","platforms":[],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"price":12000,"stockSource":"auto","resellerItemId":null,"reseller_price":10500},{"days":7,"price":40000,"stockSource":"auto","resellerItemId":null,"reseller_price":31500},{"days":15,"price":80000,"stockSource":"auto","resellerItemId":null,"reseller_price":70000},{"days":30,"price":110000,"stockSource":"auto","resellerItemId":null,"reseller_price":105000}],"operationalStatus":"unknown","stockCount":null},{"id":"bd728faf-bb3f-429e-8e35-d1bbdafe7542","name":"BR MODS PC","sold":0,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261315135-file_000000002f487206a307c73a89545ca9.webp","items":[{"l":"BR MODS PC 1 HARI","p":16000,"reseller_price":17500},{"l":"BR MODS PC 10 HARI","p":70000,"reseller_price":70000},{"l":"BR MODS PC 30 HARI","p":130000,"reseller_price":140000}],"status":"active","category":"freefire","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261315135-file_000000002f487206a307c73a89545ca9.webp","createdAt":"2026-07-16T10:08:44.602Z","platforms":[],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"hari","price":16000,"stockSource":"auto","resellerItemId":null,"reseller_price":17500},{"days":10,"unit":"hari","price":70000,"stockSource":"auto","resellerItemId":null,"reseller_price":70000},{"days":30,"unit":"hari","price":130000,"stockSource":"auto","resellerItemId":null,"reseller_price":140000}],"operationalStatus":"unknown","stockCount":null}];
+    if(!data.length){track.innerHTML='<p style="font-size:11px;color:rgba(148,163,184,.3);padding:10px;">Belum ada produk populer</p>';return;}
+    track.innerHTML=data.map((p,i)=>{
+      const isOut=!(p.stockCount>0);
+      const price=p.items&&p.items.length>0?p.items[0].p:null;
+      const plat=p.platforms&&p.platforms.length>0?p.platforms[0].toUpperCase():'';
+      const platClr=plat==='IOS'?'#93c5fd':'#4ade80';
+      const platBg=plat==='IOS'?'rgba(59,130,246,.2)':'rgba(34,197,94,.15)';
+      return`<div onclick="openPaymentFromCard(event, this)" style="flex-shrink:0;min-width:155px;max-width:155px;scroll-snap-align:start;border-radius:12px;overflow:hidden;background:#0d1a4a;border:1px solid rgba(37,99,235,.22);cursor:pointer;transition:border-color .2s,transform .15s;"
+        onmouseover="this.style.borderColor='rgba(37,99,235,.55)';this.style.transform='translateY(-2px)'"
+        onmouseout="this.style.borderColor='rgba(37,99,235,.22)';this.style.transform=''">
+        <div style="position:relative;height:110px;overflow:hidden;">
+          ${plat?`<span style="position:absolute;top:6px;right:6px;z-index:10;font-size:8px;font-weight:800;padding:2px 5px;border-radius:3px;background:${platBg};color:${platClr};">${plat}</span>`:''}
+          ${p.image?`<img src="${p.image}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`:`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(37,99,235,.06);"><iconify-icon icon="solar:gamepad-bold" style="font-size:28px;color:rgba(37,99,235,.35);"></iconify-icon></div>`}
+          <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,77,.8) 0%,transparent 55%);pointer-events:none;"></div>
+        </div>
+        <div style="padding:9px;">
+          <div style="font-size:11px;font-weight:800;color:#e2e8f0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:5px;">${p.name}</div>
+          ${price?`<div style="font-size:11px;font-weight:900;color:#60a5fa;margin-bottom:8px;">Rp ${Number(price).toLocaleString('id-ID')}</div>`:''}
+          <button style="width:100%;padding:7px 0;border-radius:7px;font-size:10px;font-weight:900;color:${isOut?'rgba(255,255,255,.25)':'#fff'};background:${isOut?'rgba(255,255,255,.04)':'linear-gradient(135deg,#1d4ed8,#2563eb)'};border:${isOut?'1px solid rgba(255,255,255,.06)':'none'};display:flex;align-items:center;justify-content:center;gap:4px;${isOut?'cursor:not-allowed;':''}" ${isOut?'disabled':''}>
+            <iconify-icon icon="${isOut?'mdi:close-circle-outline':'mdi:shopping'}" style="font-size:11px;"></iconify-icon>${isOut?'Habis':'Beli'}
+          </button>
+        </div>
+      </div>`;
+    }).join('');
+    // drag scroll
+    let down=false,sx,sl;
+    track.addEventListener('mousedown',e=>{down=true;track.style.cursor='grabbing';sx=e.pageX-track.offsetLeft;sl=track.scrollLeft;e.preventDefault();});
+    track.addEventListener('mouseleave',()=>{down=false;track.style.cursor='';});
+    track.addEventListener('mouseup',()=>{down=false;track.style.cursor='';});
+    track.addEventListener('mousemove',e=>{if(!down)return;track.scrollLeft=sl-(e.pageX-track.offsetLeft-sx)*1.2;});
+  }catch(e){track.innerHTML='';}
+}
+
+document.addEventListener('DOMContentLoaded',loadPopular);
+
+/* Notifikasi pembelian user lain */
+(function(){
+  const names=['Rizky','Andi','Dimas','Farhan','Wanda','Putra','Bintang','Kevin','Abil','Hergi','Rehan','Dwi','Yoga','Fajar','Indra','Naufal','Aldi','Salsa','Sinta','Reza'];
+  const cities=['Jakarta','Bandung','Surabaya','Medan','Semarang','Makassar','Bekasi','Tangerang','Depok','Bogor','Yogyakarta','Palembang'];
+  const toast=document.getElementById('purchase-toast');
+  if(!toast)return;
+  const textEl=document.getElementById('pt-text');
+  const timeEl=toast.querySelector('#pt-time span');
+  const avatarEl=document.getElementById('pt-avatar');
+  let products=[];
+  try{products=[{"id":"777b94d8-08ff-42c3-9a64-42681a189df7","name":"HG CHEAT","sold":101,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705485249-file_00000000b36471fab9915b4e268ac081.webp","items":[{"l":"HG CHEAT 1 DAYS","p":10000,"reseller_price":6500},{"l":"HG CHEAT 7 DAYS","p":30000,"reseller_price":20150},{"l":"HG CHEAT 10 DAYS","p":45000,"reseller_price":29250},{"l":"HG CHEAT 30 DAYS","p":99000,"reseller_price":64350}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705485249-file_00000000b36471fab9915b4e268ac081.webp","createdAt":"2026-07-03T09:09:11.017Z","platforms":["android"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"price":10000,"stockSource":"auto","resellerItemId":9,"reseller_price":6500},{"days":7,"price":30000,"stockSource":"auto","resellerItemId":78,"reseller_price":20150},{"days":10,"price":45000,"stockSource":"auto","resellerItemId":11,"reseller_price":29250},{"days":30,"price":99000,"stockSource":"auto","resellerItemId":43,"reseller_price":64350}],"resellerItemId":null,"operationalStatus":"online","stockCount":null},{"id":"ad36072c-6635-406c-942a-6bf56bf5ca69","name":"DRIP CLIENT","sold":86,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705382132-file_00000000fdf471fabca33163fef19284.webp","items":[{"l":"DRIP CLIENT 1 HARI","p":10000,"reseller_price":5000},{"l":"DRIP CLIENT 3 HARI","p":25000,"reseller_price":12500},{"l":"DRIP CLIENT 7 HARI","p":45000,"reseller_price":22500},{"l":"DRIP CLIENT 15 HARI","p":70000,"reseller_price":35000},{"l":"DRIP CLIENT 30 HARI","p":100000,"reseller_price":50000}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705382132-file_00000000fdf471fabca33163fef19284.webp","createdAt":"2026-07-03T09:01:54.537Z","platforms":["android"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"hari","price":10000,"stockSource":"auto","resellerItemId":5,"reseller_price":5000},{"days":3,"unit":"hari","price":25000,"stockSource":"auto","resellerItemId":44,"reseller_price":12500},{"days":7,"unit":"hari","price":45000,"stockSource":"auto","resellerItemId":6,"reseller_price":22500},{"days":15,"unit":"hari","price":70000,"stockSource":"auto","resellerItemId":7,"reseller_price":35000},{"days":30,"unit":"hari","price":100000,"stockSource":"auto","resellerItemId":8,"reseller_price":50000}],"resellerItemId":null,"operationalStatus":"offline","stockCount":null},{"id":"11c1bf90-a340-4db6-93a0-2932f36b5716","name":"DRIP PROXY","sold":25,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705428751-file_00000000fdf471fabca33163fef19284.webp","items":[{"l":"DRIP PROXY 1 HARI","p":10000,"reseller_price":5000},{"l":"DRIP PROXY 3 HARI","p":25000,"reseller_price":12500},{"l":"DRIP PROXY 7 HARI","p":45000,"reseller_price":22500},{"l":"DRIP PROXY 30 HARI","p":100000,"reseller_price":50000}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786705428751-file_00000000fdf471fabca33163fef19284.webp","createdAt":"2026-07-03T09:05:47.478Z","platforms":["android"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"hari","price":10000,"stockSource":"auto","resellerItemId":null,"reseller_price":5000},{"days":3,"unit":"hari","price":25000,"stockSource":"auto","resellerItemId":null,"reseller_price":12500},{"days":7,"unit":"hari","price":45000,"stockSource":"auto","resellerItemId":null,"reseller_price":22500},{"days":30,"unit":"hari","price":100000,"stockSource":"auto","resellerItemId":94,"reseller_price":50000}],"resellerItemId":null,"operationalStatus":"offline","stockCount":null},{"id":"78267f33-a9f8-472e-9d47-d9e7f849e204","name":"PRIME HOOK","sold":20,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784260958335-file_00000000057c71fb9d4eed8a2e4ec877.webp","items":[{"l":"PRIME HOOK 1 DAYS","p":8000,"reseller_price":6000},{"l":"PRIME HOOK 3 DAYS","p":18000,"reseller_price":13500},{"l":"PRIME HOOK 7 DAYS","p":35000,"reseller_price":26250}],"status":"active","category":"freefire","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784260958335-file_00000000057c71fb9d4eed8a2e4ec877.webp","createdAt":"2026-07-03T09:12:29.518Z","platforms":["android"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"price":8000,"stockSource":"auto","resellerItemId":61,"reseller_price":6000},{"days":3,"price":18000,"stockSource":"auto","resellerItemId":62,"reseller_price":13500},{"days":7,"price":35000,"stockSource":"auto","resellerItemId":63,"reseller_price":26250}],"resellerItemId":null,"operationalStatus":"unknown","stockCount":null},{"id":"68894b75-3b12-4908-98bb-5d9200668f4d","name":"HG PROXY","sold":11,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786979989912-file_00000000b36471fab9915b4e268ac081.webp","items":[{"l":"HG PROXY 1 HARI","p":13000,"reseller_price":9100},{"l":"HG PROXY 7 HARI","p":30000,"reseller_price":21000},{"l":"HG PROXY 10 HARI","p":50000,"reseller_price":35000}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786979989912-file_00000000b36471fab9915b4e268ac081.webp","createdAt":"2026-07-21T06:42:30.937Z","platforms":["android"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"hari","price":13000,"stockSource":"auto","resellerItemId":93,"reseller_price":9100},{"days":7,"unit":"hari","price":30000,"stockSource":"auto","resellerItemId":98,"reseller_price":21000},{"days":10,"unit":"hari","price":50000,"stockSource":"auto","resellerItemId":99,"reseller_price":35000}],"operationalStatus":"offline","stockCount":null},{"id":"33a52322-fbf3-471a-82cd-5c070e927758","name":"MIGUL IOS PRO","sold":7,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784427390171-file_00000000f9bc720799ea3c07318cbcbe.webp","items":[{"l":"MIGUL IOS PRO 1 HARI","p":45000,"reseller_price":27000},{"l":"MIGUL IOS PRO 7 HARI","p":130000,"reseller_price":78000},{"l":"MIGUL IOS PRO 30 HARI","p":300000,"reseller_price":180000}],"status":"active","category":"freefire","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784427390171-file_00000000f9bc720799ea3c07318cbcbe.webp","createdAt":"2026-07-03T18:01:31.178Z","platforms":["ios"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"hari","price":45000,"stockSource":"auto","resellerItemId":74,"reseller_price":27000},{"days":7,"unit":"hari","price":130000,"stockSource":"auto","resellerItemId":75,"reseller_price":78000},{"days":30,"unit":"hari","price":300000,"stockSource":"auto","resellerItemId":76,"reseller_price":180000}],"resellerItemId":null,"operationalStatus":"offline","stockCount":null},{"id":"1fa721e7-a888-49e6-a95f-835bb3e6512e","name":"PATO ORANGE","sold":5,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786979843085-file_00000000b84c71fa9f79889f1c34aca5.webp","items":[{"l":"PATO ORANGE 3 HARI","p":35000,"reseller_price":24500},{"l":"PATO ORANGE 7 HARI","p":70000,"reseller_price":49000},{"l":"PATO ORANGE 15 HARI","p":100000,"reseller_price":70000},{"l":"PATO ORANGE 30 HARI","p":150000,"reseller_price":105000}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786979843085-file_00000000b84c71fa9f79889f1c34aca5.webp","createdAt":"2026-07-15T03:27:49.928Z","platforms":[],"stockMode":"auto","description":"","pricingOptions":[{"days":3,"unit":"hari","price":35000,"stockSource":"auto","resellerItemId":79,"reseller_price":24500},{"days":7,"unit":"hari","price":70000,"stockSource":"auto","resellerItemId":80,"reseller_price":49000},{"days":15,"unit":"hari","price":100000,"stockSource":"auto","resellerItemId":81,"reseller_price":70000},{"days":30,"unit":"hari","price":150000,"stockSource":"auto","resellerItemId":82,"reseller_price":105000}],"resellerItemId":null,"operationalStatus":"online","stockCount":null},{"id":"cb418254-b3af-4c36-ad2b-66d6976b3552","name":"PATO BLUE","sold":4,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261260788-file_00000000909472079324383b0a941c8f.webp","items":[{"l":"PATO BLUE 3 DAYS","p":25000,"reseller_price":17500},{"l":"PATO BLUE 7 DAYS","p":50000,"reseller_price":35000},{"l":"PATO BLUE 15 DAYS","p":80000,"reseller_price":56000},{"l":"PATO BLUE 30 DAYS","p":120000,"reseller_price":84000}],"status":"active","category":"freefire","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261260788-file_00000000909472079324383b0a941c8f.webp","createdAt":"2026-07-15T03:31:12.170Z","platforms":[],"stockMode":"auto","description":"","pricingOptions":[{"days":3,"price":25000,"stockSource":"auto","resellerItemId":12,"reseller_price":17500},{"days":7,"price":50000,"stockSource":"auto","resellerItemId":13,"reseller_price":35000},{"days":15,"price":80000,"stockSource":"auto","resellerItemId":14,"reseller_price":56000},{"days":30,"price":120000,"stockSource":"auto","resellerItemId":15,"reseller_price":84000}],"resellerItemId":12,"operationalStatus":"online","stockCount":null},{"id":"1365668f-9ba2-4e46-938c-004a7b43dde9","name":"BALA MODS","sold":3,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786755128618-file_000000008e288207831db508647a890f.webp","items":[{"l":"BALA MODS 1 DAYS","p":4000,"reseller_price":2800},{"l":"BALA MODS 3 DAYS","p":8250,"reseller_price":5775},{"l":"BALA MODS 6 DAYS","p":13200,"reseller_price":9240},{"l":"BALA MODS 12 DAYS","p":26400,"reseller_price":18480},{"l":"BALA MODS 1 DAYS","p":52800,"reseller_price":36960},{"l":"BALA MODS 2 DAYS","p":105600,"reseller_price":73920},{"l":"BALA MODS 3 DAYS","p":155800,"reseller_price":109060},{"l":"BALA MODS 7 DAYS","p":329000,"reseller_price":230300}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786755128618-file_000000008e288207831db508647a890f.webp","createdAt":"2026-08-15T00:52:09.151Z","platforms":["android"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"jam","price":4000,"stockSource":"auto","resellerItemId":113,"reseller_price":2800},{"days":3,"unit":"jam","price":8250,"stockSource":"auto","resellerItemId":114,"reseller_price":5775},{"days":6,"unit":"jam","price":13200,"stockSource":"auto","resellerItemId":115,"reseller_price":9240},{"days":12,"unit":"jam","price":26400,"stockSource":"auto","resellerItemId":116,"reseller_price":18480},{"days":1,"unit":"hari","price":52800,"stockSource":"auto","resellerItemId":117,"reseller_price":36960},{"days":2,"unit":"hari","price":105600,"stockSource":"auto","resellerItemId":118,"reseller_price":73920},{"days":3,"unit":"hari","price":155800,"stockSource":"auto","resellerItemId":119,"reseller_price":109060},{"days":7,"unit":"hari","price":329000,"stockSource":"auto","resellerItemId":121,"reseller_price":230300}],"operationalStatus":"online","stockCount":null},{"id":"bee36b10-a6c1-481c-b231-100866bc2e77","name":"GBOX","sold":2,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784425524264-file_00000000344871fba2f839ec71d6b7fc.webp","items":[{"l":"GBOX 365 DAYS","p":100000,"reseller_price":55000}],"status":"active","category":"freefire","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784425524264-file_00000000344871fba2f839ec71d6b7fc.webp","createdAt":"2026-07-03T09:22:54.698Z","platforms":["ios"],"stockMode":"auto","description":"","pricingOptions":[{"days":365,"price":100000,"stockSource":"auto","resellerItemId":28,"reseller_price":55000}],"resellerItemId":null,"operationalStatus":"online","stockCount":null},{"id":"746f7754-67d6-4707-81b5-900af891a566","name":"MIGUL LITE","sold":1,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784427451636-file_00000000c85c71fa8a42f1b1db6923c6.webp","items":[{"l":"MIGUL LITE 1 HARI","p":40000,"reseller_price":24000},{"l":"MIGUL LITE 7 HARI","p":110000,"reseller_price":66000},{"l":"MIGUL LITE 30 HARI","p":300000,"reseller_price":180000}],"status":"active","category":"freefire","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784427451636-file_00000000c85c71fa8a42f1b1db6923c6.webp","createdAt":"2026-07-15T03:15:18.418Z","platforms":["ios"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"hari","price":40000,"stockSource":"auto","resellerItemId":65,"reseller_price":24000},{"days":7,"unit":"hari","price":110000,"stockSource":"auto","resellerItemId":66,"reseller_price":66000},{"days":30,"unit":"hari","price":300000,"stockSource":"auto","resellerItemId":67,"reseller_price":180000}],"resellerItemId":null,"operationalStatus":"offline","stockCount":null},{"id":"17d4d34e-2d3e-4c66-8606-0498f0bbc9ba","name":"PLUGIN ALL GAME","sold":1,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786980080955-file_00000000576481faa4ff5069adbb7632.webp","items":[{"l":"PLUGIN ALL GAME 3 HARI","p":25000,"reseller_price":17500},{"l":"PLUGIN ALL GAME 7 HARI","p":50000,"reseller_price":35000},{"l":"PLUGIN ALL GAME 30 HARI","p":100000,"reseller_price":70000},{"l":"PLUGIN ALL GAME 60 HARI","p":160000,"reseller_price":112000},{"l":"PLUGIN ALL GAME 90 HARI","p":200000,"reseller_price":140000}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786980080955-file_00000000576481faa4ff5069adbb7632.webp","createdAt":"2026-07-31T06:07:13.283Z","platforms":["android"],"stockMode":"auto","description":"","pricingOptions":[{"days":3,"unit":"hari","price":25000,"stockSource":"auto","resellerItemId":null,"reseller_price":17500},{"days":7,"unit":"hari","price":50000,"stockSource":"auto","resellerItemId":null,"reseller_price":35000},{"days":30,"unit":"hari","price":100000,"stockSource":"auto","resellerItemId":null,"reseller_price":70000},{"days":60,"unit":"hari","price":160000,"stockSource":"auto","resellerItemId":null,"reseller_price":112000},{"days":90,"unit":"hari","price":200000,"stockSource":"auto","resellerItemId":null,"reseller_price":140000}],"operationalStatus":"online","stockCount":null},{"id":"d2eb9296-1ac9-4acc-b98b-577d6410858b","name":"PROXY IOS","sold":1,"image":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786755278667-file_0000000019b48207851d85fe819a462c.webp","items":[{"l":"PROXY IOS 1 DAYS","p":35000,"reseller_price":19250},{"l":"PROXY IOS 7 DAYS","p":70000,"reseller_price":38500},{"l":"PROXY IOS 30 DAYS","p":135000,"reseller_price":74250}],"status":"active","category":"freefire","bannerUrl":"https://iafgtjwtwvjuqvtehoxj.supabase.co/storage/v1/object/public/product-images/1786755278667-file_0000000019b48207851d85fe819a462c.webp","createdAt":"2026-08-15T00:54:39.225Z","platforms":["ios"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"hari","price":35000,"stockSource":"auto","resellerItemId":122,"reseller_price":19250},{"days":7,"unit":"hari","price":70000,"stockSource":"auto","resellerItemId":123,"reseller_price":38500},{"days":30,"unit":"hari","price":135000,"stockSource":"auto","resellerItemId":124,"reseller_price":74250}],"operationalStatus":"online","stockCount":null},{"id":"cdc02644-d526-425a-8681-2643ff0ab69e","name":"FLUORITE IOS FF","sold":0,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261035554-file_00000000e10871fab17eeb806f5554f1.webp","items":[{"l":"FLUORITE IOS FF 1 DAYS","p":50000,"reseller_price":27500},{"l":"FLUORITE IOS FF 7 DAYS","p":150000,"reseller_price":82500},{"l":"FLUORITE IOS FF 30 DAYS","p":350000,"reseller_price":192500}],"status":"active","category":"freefire","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261035554-file_00000000e10871fab17eeb806f5554f1.webp","createdAt":"2026-07-03T09:18:38.579Z","platforms":["ios"],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"price":50000,"stockSource":"auto","resellerItemId":2,"reseller_price":27500},{"days":7,"price":150000,"stockSource":"auto","resellerItemId":null,"reseller_price":82500},{"days":30,"price":350000,"stockSource":"auto","resellerItemId":null,"reseller_price":192500}],"resellerItemId":null,"operationalStatus":"offline","stockCount":null},{"id":"41a8e644-3bd4-4ab5-8667-ed83126367db","name":"BR MODS ROOT","sold":0,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261286503-file_000000002f487206a307c73a89545ca9.webp","items":[{"l":"BR MODS ROOT 1 DAYS","p":12000,"reseller_price":10500},{"l":"BR MODS ROOT 7 DAYS","p":40000,"reseller_price":31500},{"l":"BR MODS ROOT 15 DAYS","p":80000,"reseller_price":70000},{"l":"BR MODS ROOT 30 DAYS","p":110000,"reseller_price":105000}],"status":"active","category":"root","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261286503-file_000000002f487206a307c73a89545ca9.webp","createdAt":"2026-07-16T09:54:03.999Z","platforms":[],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"price":12000,"stockSource":"auto","resellerItemId":null,"reseller_price":10500},{"days":7,"price":40000,"stockSource":"auto","resellerItemId":null,"reseller_price":31500},{"days":15,"price":80000,"stockSource":"auto","resellerItemId":null,"reseller_price":70000},{"days":30,"price":110000,"stockSource":"auto","resellerItemId":null,"reseller_price":105000}],"operationalStatus":"unknown","stockCount":null},{"id":"bd728faf-bb3f-429e-8e35-d1bbdafe7542","name":"BR MODS PC","sold":0,"image":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261315135-file_000000002f487206a307c73a89545ca9.webp","items":[{"l":"BR MODS PC 1 HARI","p":16000,"reseller_price":17500},{"l":"BR MODS PC 10 HARI","p":70000,"reseller_price":70000},{"l":"BR MODS PC 30 HARI","p":130000,"reseller_price":140000}],"status":"active","category":"freefire","bannerUrl":"https://adwgodbwldfvodavqbmw.supabase.co/storage/v1/object/public/product-images/1784261315135-file_000000002f487206a307c73a89545ca9.webp","createdAt":"2026-07-16T10:08:44.602Z","platforms":[],"stockMode":"auto","description":"","pricingOptions":[{"days":1,"unit":"hari","price":16000,"stockSource":"auto","resellerItemId":null,"reseller_price":17500},{"days":10,"unit":"hari","price":70000,"stockSource":"auto","resellerItemId":null,"reseller_price":70000},{"days":30,"unit":"hari","price":130000,"stockSource":"auto","resellerItemId":null,"reseller_price":140000}],"operationalStatus":"unknown","stockCount":null}];}catch(e){products=[];}
+  let hideTimer=null, cycleTimer=null, dismissed=false;
+
+  function pick(arr){return arr[Math.floor(Math.random()*arr.length)];}
+
+  function showToast(){
+    if(dismissed||!products.length)return;
+    const p=pick(products);
+    const name=pick(names);
+    const city=pick(cities);
+    const mins=Math.floor(Math.random()*28)+1;
+    avatarEl.textContent=name.charAt(0).toUpperCase();
+    textEl.innerHTML=`<strong style="color:#fff;">${name}</strong> dari ${city} baru saja membeli <strong style="color:#60a5fa;">${p.name}</strong>`;
+    timeEl.textContent=mins<=1?'Baru saja':`${mins} menit yang lalu`;
+    toast.style.transform='translateY(0)';
+    toast.style.opacity='1';
+    clearTimeout(hideTimer);
+    hideTimer=setTimeout(hidePurchaseToast,5000);
+  }
+
+  window.hidePurchaseToast=function(){
+    toast.style.transform='translateY(140%)';
+    toast.style.opacity='0';
+  };
+
+  function loop(){
+    showToast();
+    cycleTimer=setTimeout(loop,Math.floor(Math.random()*5000)+8000);
+  }
+  setTimeout(loop,4000);
+})();
+
+</script>
+
+
+    <!-- ══ SEARCH PANEL ══ -->
+    <div id="search-panel" class="fixed inset-0 flex-col" style="display:none;background:var(--bg-main);z-index:8000;">
+        <div class="flex items-center gap-3 p-4 border-b" style="border-color:var(--border);">
+            <button onclick="closeSearch()" class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(255,255,255,.05);border:1px solid var(--border);">
+                <iconify-icon icon="mdi:arrow-left" style="color:var(--text-2);font-size:18px;"></iconify-icon>
+            </button>
+            <div class="flex-1 relative">
+                <iconify-icon icon="mdi:magnify" class="absolute left-3 top-1/2 -translate-y-1/2" style="color:var(--text-3);font-size:16px;"></iconify-icon>
+                <input type="text" id="searchInput" placeholder="Cari produk..." class="hm-input pl-9" oninput="doSearch(this.value)">
+            </div>
+        </div>
+        <div id="searchResults" class="flex-1 overflow-y-auto p-4">
+            <div class="text-center py-16" style="color:var(--text-3);">
+                <iconify-icon icon="mdi:magnify" style="font-size:40px;" class="block mb-2"></iconify-icon>
+                <p class="text-sm">Ketik untuk mencari produk...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ CART PANEL ══ -->
+    <div id="cart-panel" class="fixed inset-0" style="display:none;z-index:8000;">
+        <div id="cart-panel-overlay" onclick="closeCart()" class="absolute inset-0" style="background:rgba(0,0,0,.7);"></div>
+        <div id="cart-panel-content" class="modal-sheet absolute bottom-0 left-0 right-0">
+            <div class="flex items-center justify-between p-4 sticky top-0" style="background:var(--bg-card);border-bottom:1px solid var(--border);">
+                <h3 class="font-bold text-sm" style="color:var(--text-1);">Keranjang</h3>
+                <button onclick="closeCart()" class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:rgba(255,255,255,.05);border:1px solid var(--border);">
+                    <iconify-icon icon="mdi:close" style="color:var(--text-2);"></iconify-icon>
+                </button>
+            </div>
+            <div id="cartItems" class="p-4 space-y-3"></div>
+        </div>
+    </div>
+
+    <!-- ══ TRACK PANEL ══ -->
+    <div id="track-panel" class="fixed inset-0 hidden" style="z-index:8000;">
+        <div class="absolute inset-0" style="background:rgba(0,0,0,.7);" onclick="closeTrack()"></div>
+        <div class="modal-sheet absolute bottom-0 left-0 right-0 p-5">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="font-bold text-sm" style="color:var(--text-1);">Lacak Pesanan</h3>
+                <button onclick="closeTrack()" class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:rgba(255,255,255,.05);border:1px solid var(--border);">
+                    <iconify-icon icon="mdi:close" style="color:var(--text-2);"></iconify-icon>
+                </button>
+            </div>
+            <div class="space-y-3">
+                <input type="text" id="trackCode" placeholder="VR-XXXX-XXXX" class="hm-input font-mono uppercase tracking-widest" maxlength="14" oninput="this.value=this.value.toUpperCase()">
+                <button onclick="doTrack()" class="btn btn-primary w-full py-2.5 text-sm">
+                    <iconify-icon icon="mdi:magnify"></iconify-icon> Cek Status
+                </button>
+                <div id="trackResult"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ══ MENU DRAWER ══ -->
+    <div id="menu-drawer">
+      <div class="menu-overlay" onclick="closeMenu()"></div>
+      <aside id="menu-drawer-content" class="side-drawer">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid rgba(37,99,235,.18);">
+          <img src="https://files.catbox.moe/kgo0k4.jpg" alt="SANJI NEWERA" style="height:34px;width:auto;object-fit:contain;">
+          <button onclick="closeMenu()" class="sne-close" aria-label="Tutup menu">✕</button>
+        </div>
+        <div style="padding:12px;">
+          <a href="#" onclick="closeMenu();goHome();return false" class="sne-menu-link"><iconify-icon icon="mdi:home-variant" style="color:#2563eb;font-size:19px"></iconify-icon>Beranda</a>
+          <a href="#login" onclick="closeMenu();showAuth('login');return false" class="sne-menu-link"><iconify-icon icon="mdi:login" style="color:#60a5fa;font-size:19px"></iconify-icon>Login</a>
+          <a href="#register" onclick="closeMenu();showAuth('register');return false" class="sne-menu-link"><iconify-icon icon="mdi:account-plus" style="color:#22c55e;font-size:19px"></iconify-icon>Daftar</a>
+          <div class="sne-menu-divider"></div>
+          <a href="https://wa.me/6283896539967" target="_blank" rel="noopener" onclick="closeMenu()" class="sne-menu-link"><iconify-icon icon="mdi:whatsapp" style="color:#25d366;font-size:19px"></iconify-icon>Chat Admin WhatsApp</a>
+          <a href="https://whatsapp.com/channel/0029VbCqAsoJP20yxIjwhV1i" target="_blank" rel="noopener" onclick="closeMenu()" class="sne-menu-link"><iconify-icon icon="mdi:broadcast" style="color:#25d366;font-size:19px"></iconify-icon>Saluran WhatsApp</a>
+          <a href="https://t.me/SanjiNewEra" target="_blank" rel="noopener" onclick="closeMenu()" class="sne-menu-link"><iconify-icon icon="mdi:telegram" style="color:#60a5fa;font-size:19px"></iconify-icon>Telegram</a>
+          <div class="sne-menu-divider"></div>
+          <button onclick="closeMenu();showToast('Pilih produk di halaman utama untuk melakukan pembayaran.','info')" class="sne-menu-link" style="border:0;cursor:pointer;text-align:left;"><iconify-icon icon="mdi:qrcode" style="color:#f59e0b;font-size:19px"></iconify-icon>Bayar via QRIS</button>
+        </div>
+        <div style="padding:14px;text-align:center;color:#475569;font-size:10px;">© 2026 SANJI NEWERA</div>
+      </aside>
+    </div>
+
+    <script>
+    // ─── LOGOUT ───
+    function doLogout(e) {
+        e.preventDefault();
+        localStorage.removeItem('vpr_cart');
+        localStorage.removeItem('vpr_notifs');
+        window.location.href = '/logout';
+    }
+
+    // ─── TOAST ───
+    function showToast(msg, type='info') {
+        const c = document.getElementById('toast-container');
+        if (!c) return;
+        const icon = {success:'mdi:check-circle',error:'mdi:alert-circle',info:'mdi:information'}[type]||'mdi:information';
+        const clr  = {success:'var(--green)',error:'var(--red)',info:'var(--blue)'}[type]||'var(--blue)';
+        const t = document.createElement('div');
+        t.className = 'toast';
+        t.innerHTML = `<iconify-icon icon="${icon}" style="color:${clr};font-size:16px;flex-shrink:0;"></iconify-icon><span>${msg}</span>`;
+        c.appendChild(t);
+        setTimeout(() => { t.style.opacity='0'; t.style.transition='opacity .3s'; setTimeout(()=>t.remove(),300); }, 3200);
+    }
+
+    // ─── NAVBAR SCROLL ───
+    window.addEventListener('scroll', () => {
+        const n = document.getElementById('navbar');
+        if (n) n.classList.toggle('scrolled', window.scrollY > 10);
+    }, {passive:true});
+
+    // ─── PANELS ───
+    function _closeSearch() { const p=document.getElementById('search-panel'); p.style.display='none'; document.body.classList.remove('no-scroll'); }
+    function _closeCart()   { const p=document.getElementById('cart-panel');   p.style.display='none'; document.body.classList.remove('no-scroll'); }
+    function _closeTrack()  { document.getElementById('track-panel').classList.add('hidden'); document.body.classList.remove('no-scroll'); }
+    function _closeMenu()   { const p=document.getElementById('menu-drawer');  p.style.display='none'; document.body.classList.remove('no-scroll'); }
+
+    function openSearch() {
+        const p = document.getElementById('search-panel');
+        p.style.display = 'flex';
+        document.body.classList.add('no-scroll');
+        if (!allProducts.length) fetch('/api/products').then(r=>r.json()).then(d=>allProducts=d);
+        setTimeout(() => document.getElementById('searchInput')?.focus(), 80);
+    }
+    function closeSearch() { _closeSearch(); }
+
+    function openCart() {
+        renderCart();
+        const p = document.getElementById('cart-panel');
+        p.style.display = 'block';
+        document.body.classList.add('no-scroll');
+    }
+    function closeCart() { _closeCart(); }
+
+    function openTrack() {
+        document.getElementById('track-panel').classList.remove('hidden');
+        document.body.classList.add('no-scroll');
+    }
+    function closeTrack() { _closeTrack(); }
+
+    function openMenu() {
+        const p = document.getElementById('menu-drawer');
+        p.style.display = 'block';
+        const d = document.getElementById('menu-drawer-content');
+        d.style.animation = 'none';
+        void d.offsetWidth;
+        d.style.animation = 'slideRight .22s ease both';
+        document.body.classList.add('no-scroll');
+    }
+    function closeMenu() { _closeMenu(); }
+
+    function closeAll() { _closeSearch(); _closeCart(); _closeTrack(); _closeMenu(); }
+
+    // ─── SEARCH ───
+    let allProducts = [];
+    function doSearch(q) {
+        const rs = document.getElementById('searchResults');
+        if (!q.trim()) {
+            rs.innerHTML = '<div class="text-center py-16" style="color:var(--text-3);"><iconify-icon icon="mdi:magnify" style="font-size:36px;" class="block mb-2"></iconify-icon><p class="text-sm">Ketik untuk mencari...</p></div>';
+            return;
+        }
+        const f = allProducts.filter(p => p.name.toLowerCase().includes(q.toLowerCase()) || (p.category||'').toLowerCase().includes(q.toLowerCase()));
+        if (!f.length) {
+            rs.innerHTML = '<div class="text-center py-16" style="color:var(--text-3);"><iconify-icon icon="mdi:emoticon-sad-outline" style="font-size:36px;" class="block mb-2"></iconify-icon><p class="text-sm">Tidak ditemukan</p></div>';
+            return;
+        }
+        rs.innerHTML = f.map(p => `
+            <a href="/buy/${p.id}" class="flex items-center gap-3 p-3 rounded-xl mb-2 transition-colors block" style="border:1px solid var(--border);" onmouseover="this.style.background='var(--bg-hover)'" onmouseout="this.style.background='transparent'">
+                <div class="w-11 h-11 rounded-lg overflow-hidden flex-shrink-0" style="background:var(--bg-hover);border:1px solid var(--border);">
+                    ${p.image ? `<img src="${p.image}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center"><iconify-icon icon="mdi:gamepad-variant" style="color:var(--blue);font-size:18px;"></iconify-icon></div>`}
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-sm truncate" style="color:var(--text-1);">${p.name}</div>
+                    <div class="text-xs mt-0.5" style="color:var(--text-3);">${p.category||''}</div>
+                    <div class="text-xs font-bold mt-0.5" style="color:var(--blue);">${p.items?.[0]?'Rp '+p.items[0].p.toLocaleString('id-ID'):''}</div>
+                </div>
+                <iconify-icon icon="mdi:chevron-right" style="color:var(--text-3);"></iconify-icon>
+            </a>`).join('');
+    }
+
+    // ─── CART ───
+    let cart = JSON.parse(localStorage.getItem('vpr_cart') || '[]');
+    function updateCartBadge() {
+        const b = document.getElementById('cart-badge');
+        if (!b) return;
+        if (cart.length > 0) { b.textContent = cart.length; b.style.display = 'flex'; }
+        else b.style.display = 'none';
+    }
+    function renderCart() {
+        const el = document.getElementById('cartItems');
+        if (!cart.length) {
+            el.innerHTML = '<div class="text-center py-10" style="color:var(--text-3);"><iconify-icon icon="mdi:cart-outline" style="font-size:40px;" class="block mb-2"></iconify-icon><p class="text-sm">Keranjang kosong</p><a href="/" class="text-xs mt-2 inline-block" style="color:var(--blue);">Lihat produk</a></div>';
+            return;
+        }
+        el.innerHTML = cart.map((item,i) => `
+            <div class="card p-3 flex items-center gap-3">
+                <div class="w-11 h-11 rounded-lg overflow-hidden flex-shrink-0" style="background:var(--bg-hover);border:1px solid var(--border);">
+                    ${item.image ? `<img src="${item.image}" class="w-full h-full object-cover">` : `<iconify-icon icon="mdi:gamepad-variant" style="color:var(--blue);font-size:18px;"></iconify-icon>`}
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="font-semibold text-xs truncate" style="color:var(--text-1);">${item.name}</div>
+                    <div class="text-[11px] mt-0.5" style="color:var(--text-3);">${item.duration}</div>
+                    <div class="text-xs font-bold mt-0.5" style="color:var(--blue);">Rp ${item.price.toLocaleString('id-ID')}</div>
+                </div>
+                <button onclick="removeFromCart(${i})" class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:var(--red-dim);border:1px solid rgba(239,68,68,.2);">
+                    <iconify-icon icon="mdi:trash-can-outline" style="color:var(--red);font-size:14px;"></iconify-icon>
+                </button>
+            </div>`).join('') + `
+            <a href="/buy/${cart[0]?.productId}" class="btn btn-primary w-full py-2.5 mt-3 text-sm">
+                <iconify-icon icon="mdi:lightning-bolt"></iconify-icon> Lanjut Beli
+            </a>`;
+    }
+    function addToCart(item) {
+        cart.push(item);
+        localStorage.setItem('vpr_cart', JSON.stringify(cart));
+        updateCartBadge();
+        showToast('Ditambahkan ke keranjang', 'success');
+    }
+    function removeFromCart(i) {
+        cart.splice(i, 1);
+        localStorage.setItem('vpr_cart', JSON.stringify(cart));
+        updateCartBadge();
+        renderCart();
+    }
+
+    // ─── TRACK ───
+    async function doTrack() {
+        const code = document.getElementById('trackCode').value.trim().toUpperCase();
+        const rd = document.getElementById('trackResult');
+        if (!code) { showToast('Masukkan kode pesanan', 'error'); return; }
+        rd.innerHTML = '<div class="text-center py-4"><iconify-icon icon="mdi:loading" style="color:var(--blue);font-size:20px;" class="animate-spin"></iconify-icon></div>';
+        try {
+            const r = await fetch('/invoice', {method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body:`code=${code}`});
+            const html = await r.text();
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            const trx = doc.querySelector('.p-4.rounded-lg');
+            if (trx) { rd.innerHTML = `<div class="card p-4 mt-3">${trx.innerHTML}</div>`; }
+            else rd.innerHTML = '<div class="card p-3 mt-3 text-xs" style="color:var(--red);">Kode pesanan tidak ditemukan</div>';
+        } catch(e) {
+            rd.innerHTML = '<div class="card p-3 mt-3 text-xs" style="color:var(--red);">Gagal mengambil data</div>';
+        }
+    }
+
+    // ─── AVATAR UPLOAD ───
+    async function uploadAvatar(input) {
+        const file = input.files[0];
+        if (!file) return;
+        if (file.size > 2*1024*1024) { showToast('Maks 2MB', 'error'); return; }
+        const fd = new FormData();
+        fd.append('photo', file);
+        try {
+            showToast('Mengupload...', 'info');
+            const r = await fetch('/profile/photo', {method:'POST', body:fd});
+            const d = await r.json();
+            if (d.success) {
+                const wrap = document.getElementById('profilePhotoWrap');
+                if (wrap) wrap.innerHTML = `<img src="${d.photo}?t=${Date.now()}" class="w-full h-full object-cover">`;
+                showToast('Foto berhasil diperbarui', 'success');
+            } else showToast(d.message || 'Gagal upload', 'error');
+        } catch(e) { showToast('Gagal upload foto', 'error'); }
+        input.value = '';
+    }
+
+    // ─── PURCHASE NOTIF ───
+    let shownNotifIds = new Set(JSON.parse(localStorage.getItem('vpr_notifs')||'[]'));
+    let notifQueue = [], notifPlaying = false;
+    async function loadPurchaseNotifs() {
+        try {
+            const r = await fetch('/api/notifications');
+            const notifs = await r.json();
+            notifs.forEach(n => { if (!shownNotifIds.has(n.id)) { notifQueue.push(n); shownNotifIds.add(n.id); } });
+            localStorage.setItem('vpr_notifs', JSON.stringify([...shownNotifIds].slice(-100)));
+            if (!notifPlaying && notifQueue.length) playNextNotif();
+        } catch(e) {}
+    }
+    function playNextNotif() {
+        if (!notifQueue.length) { notifPlaying = false; return; }
+        notifPlaying = true;
+        showPurchaseNotif(notifQueue.shift());
+        setTimeout(playNextNotif, 4500);
+    }
+    function showPurchaseNotif(n) {
+        const c = document.getElementById('purchase-notif-container');
+        if (!c) return;
+        const bg = ['#1d4ed8','#0891b2','#15803d','#ea580c','#7c3aed'][n.buyerName.charCodeAt(0)%5];
+        const avatarHtml = n.buyerPhoto
+            ? `<img src="${n.buyerPhoto}" class="w-full h-full object-cover" style="border-radius:8px;">`
+            : `<div class="purchase-notif-avatar" style="background:${bg};">${n.buyerName.charAt(0).toUpperCase()}</div>`;
+        const el = document.createElement('div');
+        el.className = 'purchase-notif';
+        el.innerHTML = `${avatarHtml}<div class="purchase-notif-text"><div class="purchase-notif-name">${n.buyerName} baru saja beli</div><div class="purchase-notif-product">${n.productName}</div></div><div class="purchase-notif-price">Rp ${n.price.toLocaleString('id-ID')}</div>`;
+        c.appendChild(el);
+        setTimeout(() => { el.style.opacity='0'; el.style.transition='opacity .3s'; setTimeout(()=>el.remove(),300); }, 3800);
+    }
+
+    // ─── INIT ───
+    document.addEventListener('DOMContentLoaded', () => {
+        updateCartBadge();
+        setTimeout(() => { loadPurchaseNotifs(); setInterval(loadPurchaseNotifs, 30000); }, 2000);
+    });
+    document.addEventListener('keydown', e => { if (e.key==='Escape') closeAll(); });
+    document.addEventListener('click', e => {
+        const a = e.target.closest('a[href]');
+        if (!a) return;
+        const href = a.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('javascript') || a.target==='_blank') return;
+        if (a.getAttribute('onclick') || e.defaultPrevented) return;
+        e.preventDefault();
+        document.body.style.transition = 'opacity .15s';
+        document.body.style.opacity = '0';
+        setTimeout(() => { window.location.href = href; }, 150);
+    });
+    </script>
+
+    <!-- ══ FLOATING CHAT WIDGET (WA / Telegram) ══ -->
+
+    <!-- ══ STATIC AUTH PAGE ══ -->
+    <section id="sne-auth-page" aria-hidden="true">
+      <div class="sne-auth-shell">
+        <div class="sne-auth-card">
+          <img class="sne-auth-logo" src="https://files.catbox.moe/kgo0k4.jpg" alt="SANJI NEWERA">
+          <div id="sne-login-form">
+            <h2 class="sne-auth-title">Masuk</h2>
+            <p class="sne-auth-sub">Login lokal untuk akun demo/static website.</p>
+            <div class="sne-field"><label>EMAIL</label><input id="loginEmail" type="email" autocomplete="email" placeholder="nama@email.com"></div>
+            <div class="sne-field"><label>PASSWORD</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="••••••••"></div>
+            <button class="sne-main-btn" onclick="doStaticLogin()">MASUK</button>
+            <button class="sne-back-btn" onclick="goHome()">Kembali ke beranda</button>
+            <div class="sne-auth-switch">Belum punya akun? <a href="#register" onclick="showAuth('register');return false">Daftar</a></div>
+          </div>
+
+          <div id="sne-register-form" style="display:none">
+            <h2 class="sne-auth-title">Daftar</h2>
+            <p class="sne-auth-sub">Buat akun lokal di browser ini.</p>
+            <div class="sne-field"><label>NAMA</label><input id="regName" type="text" autocomplete="name" placeholder="Nama kamu"></div>
+            <div class="sne-field"><label>EMAIL</label><input id="regEmail" type="email" autocomplete="email" placeholder="nama@email.com"></div>
+            <div class="sne-field"><label>PASSWORD</label><input id="regPassword" type="password" autocomplete="new-password" placeholder="Minimal 6 karakter"></div>
+            <button class="sne-main-btn" onclick="doStaticRegister()">BUAT AKUN</button>
+            <button class="sne-back-btn" onclick="goHome()">Kembali ke beranda</button>
+            <div class="sne-auth-switch">Sudah punya akun? <a href="#login" onclick="showAuth('login');return false">Masuk</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ QRIS PAYMENT ══ -->
+    <section id="sne-payment" aria-hidden="true">
+      <div class="sne-pay-card">
+        <div class="sne-pay-head">
+          <h3>Pilih Durasi & Bayar</h3>
+          <button class="sne-close" onclick="closePayment()" aria-label="Tutup">✕</button>
+        </div>
+        <div class="sne-order">
+          <div id="payProductName" class="sne-order-name">Produk</div>
+          <div id="payProductPrice" class="sne-order-price" style="font-size:12px; color:#94a3b8; font-weight:400;">Pilih durasi di bawah</div>
+        </div>
+        
+        <!-- DAFTAR DURASI & HARGA -->
+        <div id="payOptionsList" style="display:flex; flex-direction:column; gap:8px; margin:12px 0 16px;">
+          <!-- Akan diisi oleh JS -->
+        </div>
+
+        <img class="sne-qris" src="https://files.catbox.moe/kohgrx.jpg" alt="QRIS pembayaran" style="display:none;" id="payQrisImage">
+        <p class="sne-pay-note" id="payQrisNote" style="display:none;">Scan QRIS di atas. Setelah pembayaran selesai, kirim bukti ke admin WhatsApp.</p>
+        <a id="payWhatsApp" class="sne-wa" href="#" target="_blank" rel="noopener" style="display:none;">
+          <iconify-icon icon="mdi:whatsapp" style="font-size:20px"></iconify-icon>
+          CHAT WA & KIRIM BUKTI
+        </a>
+        <button id="payBackBtn" class="sne-back-btn" onclick="resetPaymentModal()" style="display:none; margin-top:8px;">Kembali pilih durasi</button>
+      </div>
+    </section>
+
+    <div id="chatWidget" style="position:fixed;right:16px;bottom:16px;z-index:9300;display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+        <div id="chatOptions" style="display:none;flex-direction:column;gap:8px;">
+            
+            <a href="https://t.me/SanjiNewEra" target="_blank" rel="noopener"
+               style="display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:#0d1533;border:1px solid rgba(56,189,248,.35);color:#e2e8f0;font-size:12px;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,.35);white-space:nowrap;">
+                <iconify-icon icon="mdi:telegram" style="color:#38bdf8;font-size:17px;"></iconify-icon> Chat via Telegram
+            </a>
+            
+            
+            <a href="https://wa.me/6283896539967" target="_blank" rel="noopener"
+               style="display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:#0d1533;border:1px solid rgba(34,197,94,.35);color:#e2e8f0;font-size:12px;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,.35);white-space:nowrap;">
+                <iconify-icon icon="ic:baseline-whatsapp" style="color:#22c55e;font-size:17px;"></iconify-icon> Chat via WhatsApp
+            </a>
+            
+        </div>
+        <button id="chatToggleBtn" onclick="toggleChatWidget()"
+                style="width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1d4ed8,#38bdf8);border:none;box-shadow:0 8px 22px rgba(37,99,235,.5);cursor:pointer;">
+            <iconify-icon id="chatToggleIcon" icon="mdi:chat" style="color:#fff;font-size:24px;"></iconify-icon>
+        </button>
+    </div>
+    <script>
+    function toggleChatWidget() {
+        const opts = document.getElementById('chatOptions');
+        const icon = document.getElementById('chatToggleIcon');
+        const open = opts.style.display === 'flex';
+        opts.style.display = open ? 'none' : 'flex';
+        icon.setAttribute('icon', open ? 'mdi:chat' : 'mdi:close');
+    }
+    document.addEventListener('click', (e) => {
+        const widget = document.getElementById('chatWidget');
+        if (widget && !widget.contains(e.target)) {
+            document.getElementById('chatOptions').style.display = 'none';
+            document.getElementById('chatToggleIcon').setAttribute('icon', 'mdi:chat');
+        }
+    });
+    </script>
+
+<script>
+(function(){
+  const ADMIN_WA = '6283896539967';
+  const QRIS_URL = 'https://files.catbox.moe/kohgrx.jpg';
+
+  function money(v){
+    const n = String(v || '').replace(/[^\d]/g,'');
+    return n ? 'Rp ' + Number(n).toLocaleString('id-ID') : 'Rp 0';
+  }
+
+  // DATA HARGA PRODUK - sesuai dengan https://syahrulnewera.com/
+  const PRODUCTS_DATA = {
+    'DRIP CLIENT': {
+      durations: [
+        { label: '1 HARI', price: 10000 },
+        { label: '3 HARI', price: 25000 },
+        { label: '7 HARI', price: 45000 },
+        { label: '15 HARI', price: 70000 },
+        { label: '30 HARI', price: 100000 }
+      ]
+    },
+    'DRIP PROXY': {
+      durations: [
+        { label: '1 HARI', price: 10000 },
+        { label: '3 HARI', price: 25000 },
+        { label: '7 HARI', price: 45000 },
+        { label: '30 HARI', price: 100000 }
+      ]
+    },
+    'HG CHEAT': {
+      durations: [
+        { label: '1 HARI', price: 10000 },
+        { label: '7 HARI', price: 30000 },
+        { label: '10 HARI', price: 45000 },
+        { label: '30 HARI', price: 99000 }
+      ]
+    },
+    'PRIME HOOK': {
+      durations: [
+        { label: '1 HARI', price: 8000 },
+        { label: '3 HARI', price: 18000 },
+        { label: '7 HARI', price: 35000 }
+      ]
+    },
+    'FLUORITE IOS FF': {
+      durations: [
+        { label: '1 HARI', price: 50000 },
+        { label: '7 HARI', price: 150000 },
+        { label: '30 HARI', price: 350000 }
+      ]
+    },
+    'GBOX': {
+      durations: [
+        { label: '365 HARI', price: 100000 }
+      ]
+    },
+    'MIGUL IOS PRO': {
+      durations: [
+        { label: '1 HARI', price: 45000 },
+        { label: '7 HARI', price: 130000 },
+        { label: '30 HARI', price: 300000 }
+      ]
+    },
+    'MIGUL LITE': {
+      durations: [
+        { label: '1 HARI', price: 40000 },
+        { label: '7 HARI', price: 110000 },
+        { label: '30 HARI', price: 300000 }
+      ]
+    },
+    'PATO ORANGE': {
+      durations: [
+        { label: '3 HARI', price: 35000 },
+        { label: '7 HARI', price: 70000 },
+        { label: '15 HARI', price: 100000 },
+        { label: '30 HARI', price: 150000 }
+      ]
+    },
+    'PATO BLUE': {
+      durations: [
+        { label: '3 HARI', price: 25000 },
+        { label: '7 HARI', price: 50000 },
+        { label: '15 HARI', price: 80000 },
+        { label: '30 HARI', price: 120000 }
+      ]
+    },
+    'BALA MODS': {
+      durations: [
+        { label: '1 JAM', price: 4000 },
+        { label: '3 JAM', price: 8250 },
+        { label: '6 JAM', price: 13200 },
+        { label: '12 JAM', price: 26400 },
+        { label: '1 HARI', price: 52800 },
+        { label: '2 HARI', price: 105600 },
+        { label: '3 HARI', price: 155800 },
+        { label: '7 HARI', price: 329000 }
+      ]
+    },
+    'BR MODS ROOT': {
+      durations: [
+        { label: '1 HARI', price: 12000 },
+        { label: '7 HARI', price: 40000 },
+        { label: '15 HARI', price: 80000 },
+        { label: '30 HARI', price: 110000 }
+      ]
+    },
+    'BR MODS PC': {
+      durations: [
+        { label: '1 HARI', price: 16000 },
+        { label: '10 HARI', price: 70000 },
+        { label: '30 HARI', price: 130000 }
+      ]
+    },
+    'HG PROXY': {
+      durations: [
+        { label: '1 HARI', price: 13000 },
+        { label: '7 HARI', price: 30000 },
+        { label: '10 HARI', price: 50000 }
+      ]
+    },
+    'PLUGIN ALL GAME': {
+      durations: [
+        { label: '3 HARI', price: 25000 },
+        { label: '7 HARI', price: 50000 },
+        { label: '30 HARI', price: 100000 },
+        { label: '60 HARI', price: 160000 },
+        { label: '90 HARI', price: 200000 }
+      ]
+    },
+    'PROXY IOS': {
+      durations: [
+        { label: '1 HARI', price: 35000 },
+        { label: '7 HARI', price: 70000 },
+        { label: '30 HARI', price: 135000 }
+      ]
+    }
+  };
+
+  function getProductDurations(productName) {
+    // Cari berdasarkan nama yang cocok (case insensitive)
+    const key = Object.keys(PRODUCTS_DATA).find(k => 
+      productName.toLowerCase().includes(k.toLowerCase()) || 
+      k.toLowerCase().includes(productName.toLowerCase())
+    );
+    return key ? PRODUCTS_DATA[key].durations : null;
+  }
+
+  window.showAuth = function(mode){
+    const page = document.getElementById('sne-auth-page');
+    if(!page) return;
+    page.style.display='block';
+    page.setAttribute('aria-hidden','false');
+    document.getElementById('sne-login-form').style.display = mode==='register' ? 'none':'block';
+    document.getElementById('sne-register-form').style.display = mode==='register' ? 'block':'none';
+    document.body.classList.add('no-scroll');
+    history.replaceState(null,'',mode==='register' ? '#register':'#login');
+    window.scrollTo(0,0);
+  };
+
+  window.closeAuth = function(){
+    const page=document.getElementById('sne-auth-page');
+    if(page){ page.style.display='none'; page.setAttribute('aria-hidden','true'); }
+    document.body.classList.remove('no-scroll');
+  };
+
+  window.goHome = function(){
+    closeAuth();
+    closePayment();
+    if(location.hash) history.replaceState(null,'',location.pathname+location.search);
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+
+  window.doStaticRegister = function(){
+    const name=document.getElementById('regName').value.trim();
+    const email=document.getElementById('regEmail').value.trim().toLowerCase();
+    const password=document.getElementById('regPassword').value;
+    if(!name || !email || password.length<6){
+      showToast('Isi nama, email valid, dan password minimal 6 karakter.','error'); return;
+    }
+    localStorage.setItem('sne_user', JSON.stringify({name,email,password}));
+    showToast('Akun berhasil dibuat di browser ini.','success');
+    setTimeout(()=>showAuth('login'),300);
+  };
+
+  window.doStaticLogin = function(){
+    const email=document.getElementById('loginEmail').value.trim().toLowerCase();
+    const password=document.getElementById('loginPassword').value;
+    let user=null;
+    try { user=JSON.parse(localStorage.getItem('sne_user')||'null'); } catch(e){}
+    if(!user || user.email!==email || user.password!==password){
+      showToast('Email atau password salah.','error'); return;
+    }
+    localStorage.setItem('sne_session','1');
+    closeAuth();
+    showToast('Login berhasil.','success');
+    history.replaceState(null,'',location.pathname+location.search);
+  };
+
+  window.openPaymentFromCard = function(event, card){
+    if(event) event.stopPropagation();
+    
+    // Ambil nama produk dari card
+    const nameEl = card.querySelector('[style*="font-weight:800"][style*="font-size:12px"]') || 
+                   card.querySelector('img')?.closest('.pcard')?.querySelector('[style*="font-weight:800"]');
+    const productName = nameEl ? nameEl.textContent.trim() : 'Produk';
+    
+    // Ambil data durasi
+    const durations = getProductDurations(productName);
+    
+    // Set nama produk di modal
+    document.getElementById('payProductName').textContent = productName;
+    document.getElementById('payProductPrice').textContent = 'Pilih durasi di bawah';
+    
+    // Reset modal ke state pilihan durasi
+    resetPaymentModal();
+    
+    const optionsContainer = document.getElementById('payOptionsList');
+    optionsContainer.innerHTML = '';
+    
+    if (durations && durations.length > 0) {
+      durations.forEach(d => {
+        const btn = document.createElement('button');
+        btn.className = 'sne-duration-btn';
+        btn.style.cssText = 'display:flex; justify-content:space-between; align-items:center; padding:10px 14px; border-radius:8px; background:rgba(255,255,255,.04); border:1px solid rgba(37,99,235,.2); color:#e2e8f0; font-size:13px; font-weight:600; cursor:pointer; transition:all .15s;';
+        btn.innerHTML = `<span>${d.label}</span><span style="color:#38bdf8;">Rp ${d.price.toLocaleString('id-ID')}</span>`;
+        btn.onmouseover = () => { btn.style.background = 'rgba(37,99,235,.12)'; btn.style.borderColor = 'rgba(37,99,235,.5)'; };
+        btn.onmouseout = () => { btn.style.background = 'rgba(255,255,255,.04)'; btn.style.borderColor = 'rgba(37,99,235,.2)'; };
+        btn.onclick = () => {
+          // Pilih durasi ini, tampilkan QRIS
+          document.getElementById('payProductPrice').textContent = `Rp ${d.price.toLocaleString('id-ID')} (${d.label})`;
+          document.getElementById('payOptionsList').style.display = 'none';
+          document.getElementById('payQrisImage').style.display = 'block';
+          document.getElementById('payQrisNote').style.display = 'block';
+          document.getElementById('payWhatsApp').style.display = 'flex';
+          document.getElementById('payBackBtn').style.display = 'block';
+          
+          // Update link WhatsApp dengan detail pesanan
+          const message = encodeURIComponent(
+            'Halo Admin SANJI NEWERA, saya sudah melakukan pembayaran QRIS untuk pesanan:\n' +
+            'Produk: ' + productName + '\n' +
+            'Durasi: ' + d.label + '\n' +
+            'Harga: Rp ' + d.price.toLocaleString('id-ID') + '\n\n' +
+            'Saya kirim bukti pembayaran di chat ini.'
+          );
+          document.getElementById('payWhatsApp').href = 'https://wa.me/' + ADMIN_WA + '?text=' + message;
+        };
+        optionsContainer.appendChild(btn);
+      });
+    } else {
+      optionsContainer.innerHTML = '<div style="color:#94a3b8; font-size:12px; text-align:center; padding:12px;">Durasi tidak tersedia untuk produk ini.</div>';
+    }
+
+    // Tampilkan modal
+    const page = document.getElementById('sne-payment');
+    page.style.display = 'flex';
+    page.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('no-scroll');
+  };
+
+  window.resetPaymentModal = function() {
+    document.getElementById('payOptionsList').style.display = 'flex';
+    document.getElementById('payQrisImage').style.display = 'none';
+    document.getElementById('payQrisNote').style.display = 'none';
+    document.getElementById('payWhatsApp').style.display = 'none';
+    document.getElementById('payBackBtn').style.display = 'none';
+    document.getElementById('payProductPrice').textContent = 'Pilih durasi di bawah';
+  };
+
+  window.closePayment = function(){
+    const page=document.getElementById('sne-payment');
+    if(page){ page.style.display='none'; page.setAttribute('aria-hidden','true'); }
+    document.body.classList.remove('no-scroll');
+    resetPaymentModal();
+  };
+
+  function route(){
+    const h=location.hash.toLowerCase();
+    if(h==='#login') showAuth('login');
+    else if(h==='#register') showAuth('register');
+    else { closeAuth(); }
+  }
+  window.addEventListener('hashchange',route);
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){ closePayment(); closeAuth(); closeMenu(); }
+  });
+  route();
+
+  // Prevent the product-card parent click from being triggered twice by its Buy button.
+  document.querySelectorAll('.pcard button').forEach(btn=>{
+    btn.addEventListener('click', e=>{
+      e.stopPropagation();
+      const card=btn.closest('.pcard');
+      if(card) openPaymentFromCard(e,card);
+    });
+  });
+
+  // Make the existing /login and /register style links safe in case any were missed.
+  document.querySelectorAll('a[href="/login"]').forEach(a=>{
+    a.href='#login'; a.addEventListener('click',e=>{e.preventDefault();showAuth('login');});
+  });
+  document.querySelectorAll('a[href="/register"]').forEach(a=>{
+    a.href='#register'; a.addEventListener('click',e=>{e.preventDefault();showAuth('register');});
+  });
+})();
+</script>
+
+</body>
+</html>
