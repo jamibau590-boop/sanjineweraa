@@ -870,6 +870,31 @@ main > section > div.container,
 }
 </style>
 
+
+    <!-- AOS: smooth, lightweight scroll reveal -->
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <style>
+      html { scroll-behavior:smooth; }
+      [data-aos] { will-change: transform, opacity; }
+      .typing-caret::after { content:'|'; display:inline-block; margin-left:2px; animation:typingBlink .8s steps(1) infinite; }
+      @keyframes typingBlink { 50% { opacity:0; } }
+      #digitalClock { font-variant-numeric:tabular-nums; white-space:nowrap; }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior:auto; }
+        [data-aos] { animation:none!important; transition:none!important; transform:none!important; opacity:1!important; }
+        .typing-caret::after { animation:none; }
+      }
+    </style>
+
+
+<style>
+img.img-load-failed{visibility:visible;object-fit:cover;background:linear-gradient(135deg,#111,#1b1b1b);}
+#heroTypingText{display:inline;}
+#heroTypingText span{will-change:opacity,filter,transform;}
+#sne-account-page{font-family:Inter,system-ui,sans-serif;}
+</style>
 </head>
 <body class="font-inter">
     <div id="toast-container"></div>
@@ -878,29 +903,23 @@ main > section > div.container,
     
 
 <!-- ══ NAVBAR ══ -->
-<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:50;background:linear-gradient(180deg, rgba(10,20,66,.97), rgba(5,12,38,.95));backdrop-filter:blur(14px);border-bottom:1px solid rgba(56,189,248,.22);box-shadow:0 2px 20px rgba(37,99,235,.12);">
+<nav id="navbar" style="position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(7,7,7,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 4px 25px rgba(0,0,0,.30);">
   <div style="max-width:1200px;margin:0 auto;padding:0 16px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px;">
-
-      <!-- Logo -->
+    <div style="display:flex;align-items:center;justify-content:space-between;height:68px;gap:10px;">
       <a href="/" style="display:flex;align-items:center;text-decoration:none;flex-shrink:0;">
-        <img src="https://files.catbox.moe/kgo0k4.jpg" alt="SanjiCITER" style="height:48px;width:auto;object-fit:contain;">
+        <img src="https://files.catbox.moe/kgo0k4.jpg" alt="SanjiCITER" style="height:48px;width:auto;object-fit:contain;display:block;" fetchpriority="high" decoding="async">
       </a>
-
-      <!-- Right buttons -->
-      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;margin-left:auto;">
-        <!-- Search icon (semua ukuran layar) -->
-        <button onclick="openSearch()" style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(37,99,235,.2);display:flex;align-items:center;justify-content:center;cursor:pointer;">
-          <iconify-icon icon="mdi:magnify" style="color:rgba(148,163,184,.7);font-size:18px;"></iconify-icon>
+      <div style="display:flex;align-items:center;gap:7px;flex-shrink:0;margin-left:auto;">
+        <button onclick="openSearch()" aria-label="Cari" style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+          <iconify-icon icon="mdi:magnify" style="color:#a3a3a3;font-size:18px;"></iconify-icon>
         </button>
-        
-        <!-- Mobile: hanya MASUK saja -->
-        <a href="#login" style="padding:7px 12px;border-radius:8px;font-size:12px;font-weight:700;color:rgba(148,163,184,.8);border:1px solid rgba(255,255,255,.1);text-decoration:none;white-space:nowrap;">MASUK</a>
-        <!-- Desktop: tambah DAFTAR -->
-        <a href="#register" class="nav-btn-desktop" style="padding:8px 14px;border-radius:8px;font-size:12px;font-weight:800;color:#fff;background:#2563eb;text-decoration:none;white-space:nowrap;">DAFTAR</a>
-        
-        <button onclick="openMenu()" style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(37,99,235,.18);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
-          <iconify-icon icon="mdi:menu" style="color:rgba(148,163,184,.7);font-size:20px;"></iconify-icon>
+        <a href="#login" onclick="showAuth('login');return false" style="padding:7px 11px;border-radius:8px;font-size:11px;font-weight:800;color:#d4d4d4;border:1px solid rgba(255,255,255,.10);text-decoration:none;white-space:nowrap;">MASUK</a>
+        <a href="#register" onclick="showAuth('register');return false" class="nav-btn-desktop" style="padding:8px 12px;border-radius:8px;font-size:11px;font-weight:900;color:#fff;background:#ef4444;text-decoration:none;white-space:nowrap;">DAFTAR</a>
+        <button id="accountNavBtn" onclick="openAccount()" aria-label="Akun" style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);display:flex;align-items:center;justify-content:center;cursor:pointer;">
+          <iconify-icon icon="mdi:account-circle-outline" style="color:#a3a3a3;font-size:21px;"></iconify-icon>
+        </button>
+        <button onclick="openMenu()" aria-label="Menu" style="width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;">
+          <iconify-icon icon="mdi:menu" style="color:#a3a3a3;font-size:20px;"></iconify-icon>
         </button>
       </div>
     </div>
@@ -909,7 +928,7 @@ main > section > div.container,
 
 <!-- ══ HERO BANNER CAROUSEL ══ -->
 <div style="padding-top:68px;">
-  <div id="carousel-wrap" style="position:relative;overflow:hidden;height:clamp(180px,40vw,290px);background:#050c26;border-bottom:1px solid rgba(37,99,235,.25);user-select:none;">
+  <div id="carousel-wrap" data-aos="fade-up" data-aos-duration="450" style="position:relative;overflow:hidden;height:clamp(180px,40vw,290px);background:#050c26;border-bottom:1px solid rgba(37,99,235,.25);user-select:none;">
     <div id="carousel-track" style="display:flex;height:100%;transition:transform .52s cubic-bezier(.4,0,.2,1);will-change:transform;">
       <!-- DEFAULT SLIDE -->
       <div id="c-slide-default" style="flex:0 0 100%;position:relative;overflow:hidden;background:linear-gradient(135deg,#050c26 0%,#0d1a4a 55%,#050c26 100%);">
@@ -924,6 +943,15 @@ main > section > div.container,
           </div>
           <div style="font-weight:900;color:#fff;line-height:1.05;margin-bottom:6px;font-size:clamp(22px,6vw,50px);text-shadow:0 0 32px rgba(37,99,235,.7);">BUY KEY GAME</div>
           <div style="font-weight:900;margin-bottom:14px;font-size:clamp(13px,3.5vw,26px);background:linear-gradient(90deg,#fbbf24,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">PALING MURAH & AMAN!</div>
+
+          <div class="typing-caret" style="min-height:20px;max-width:520px;margin:0 0 14px;color:#a3a3a3;font-size:clamp(10px,2.7vw,14px);line-height:1.6;">
+            <span id="heroTypingText"></span>
+          </div>
+
+          <div id="heroDigitalClock" aria-label="Jam digital" style="display:inline-flex;align-items:center;gap:6px;width:max-content;margin:0 0 14px;padding:6px 9px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);color:#fbbf24;font-size:10px;font-weight:800;font-variant-numeric:tabular-nums;">
+            <iconify-icon icon="mdi:clock-outline" style="font-size:14px;"></iconify-icon><span>00:00:00</span>
+          </div>
+
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
             <a href="#games" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:12px;font-size:11px;font-weight:900;color:#fff;background:linear-gradient(135deg,#fbbf24,#f97316);text-decoration:none;box-shadow:0 3px 14px rgba(251,191,36,.4);">
               <iconify-icon icon="mdi:shopping" style="font-size:13px;"></iconify-icon> BUY KEY GAME SEKARANG!
@@ -962,7 +990,7 @@ main > section > div.container,
 </div>
 
 <!-- ══ SEARCH + FILTER ══ -->
-<div id="games" style="padding:16px 16px 0;max-width:1200px;margin:0 auto;">
+<div id="games" data-aos="fade-up" data-aos-duration="400" style="padding:16px 16px 0;max-width:1200px;margin:0 auto;">
 
   <!-- Filter pills -->
   <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none;-ms-overflow-style:none;">
@@ -988,13 +1016,13 @@ main > section > div.container,
 
 
 <!-- ══ SEMUA PRODUK — 2 KOLOM BESAR DI MOBILE ══ -->
-<div style="padding:16px;max-width:1200px;margin:0 auto;padding-bottom:40px;">
+<div data-aos="fade-up" data-aos-duration="450" style="padding:16px;max-width:1200px;margin:0 auto;padding-bottom:40px;">
 
   <div id="product-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-0"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1003,8 +1031,8 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/uy9kzt.jpg" alt="DRIP CLIENT APKMOD"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+             loading="eager" decoding="async"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" fetchpriority="high">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
         </div>
@@ -1042,7 +1070,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-1"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1051,8 +1079,8 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/m73svd.jpg" alt="DRIP CLIENT APK PROXY"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+             loading="eager" decoding="async"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" fetchpriority="high">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
         </div>
@@ -1090,7 +1118,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-2"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1099,8 +1127,8 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/sqtpvm.png" alt="HG CHEAT APKMOD"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+             loading="eager" decoding="async"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" fetchpriority="high">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
         </div>
@@ -1138,7 +1166,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-3"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1147,8 +1175,8 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/p9b9lh.jpg" alt="PRIME HOOK APKMOD"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+             loading="eager" decoding="async"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" fetchpriority="high">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
         </div>
@@ -1186,7 +1214,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-4"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1195,7 +1223,7 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/i2nwse.jpg" alt="FLUORITE IOS"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
+             loading="eager" decoding="async"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
@@ -1234,7 +1262,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-5"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1243,7 +1271,7 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/d94nst.jpg" alt="GBOX"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
+             loading="eager" decoding="async"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
@@ -1282,7 +1310,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-6"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1291,7 +1319,7 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/906ng3.jpg" alt="MIGUL PRO IOS"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
+             loading="eager" decoding="async"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
@@ -1330,7 +1358,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-7"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1339,7 +1367,7 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/rl6gyt.jpg" alt="MIGUL LITE IOS"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
+             loading="eager" decoding="async"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
@@ -1378,7 +1406,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-8"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1387,7 +1415,7 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/gha8qo.jpg" alt="PATO TEAM ORANGE APKMOD"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
+             loading="eager" decoding="async"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
@@ -1424,7 +1452,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-9"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1433,7 +1461,7 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/vnrokr.jpg" alt="PATO TEAM BLUE APKMOD"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
+             loading="eager" decoding="async"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
@@ -1470,7 +1498,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="root"
+    <div class="pcard" data-category="root" data-product-id="static-10"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1479,7 +1507,7 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/m37g0o.png" alt="BR MODS ROOT"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
+             loading="eager" decoding="async"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
@@ -1516,7 +1544,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-11"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1525,7 +1553,7 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/xdqu08.jpg" alt="BR MODS PC"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
+             loading="eager" decoding="async"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
@@ -1562,7 +1590,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-12"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1571,7 +1599,7 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/i6ped2.jpg" alt="HG PROXY APKMOD"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
+             loading="eager" decoding="async"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
@@ -1610,7 +1638,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-13"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1619,7 +1647,7 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/5i8n3x.jpg" alt="PLUGIN ALL GAME"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
+             loading="eager" decoding="async"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
@@ -1658,7 +1686,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-14"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1667,7 +1695,7 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/ii25c9.jpg" alt="BALA MOD APKMOD"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
+             loading="eager" decoding="async"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
@@ -1706,7 +1734,7 @@ main > section > div.container,
 
     
 
-    <div class="pcard" data-category="freefire"
+    <div class="pcard" data-category="freefire" data-product-id="static-15"
          onclick="openPaymentFromCard(event, this)"
          style="border-radius:14px;overflow:hidden;background:#0a1030;border:1px solid rgba(56,130,246,.16);cursor:pointer;transition:border-color .22s,transform .18s,box-shadow .22s;">
 
@@ -1715,7 +1743,7 @@ main > section > div.container,
         
         <img src="https://files.catbox.moe/firmwu.jpg" alt="PROXY IOS"
              style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s;"
-             loading="lazy"
+             loading="eager" decoding="async"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(37,99,235,.06);">
           <iconify-icon icon="solar:gamepad-bold" style="font-size:32px;color:rgba(37,99,235,.35);"></iconify-icon>
@@ -1803,7 +1831,7 @@ main > section > div.container,
 
 <!-- ══ TOP LEADERBOARD — DATA ASLI DARI TRANSAKSI ══ -->
 
-<div style="padding:20px 16px 8px;max-width:1200px;margin:0 auto;">
+<div style="padding:20px 16px 8px;max-width:1200px;margin:0 auto;" data-aos="fade-up">
   <div style="text-align:center;margin-bottom:18px;">
     <span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;font-size:10px;font-weight:800;color:#fbbf24;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);margin-bottom:10px;">
       <iconify-icon icon="mdi:trophy" style="font-size:13px;"></iconify-icon> TOP LEADERBOARD
@@ -1904,7 +1932,7 @@ main > section > div.container,
 
 
 <!-- ══ FOOTER ══ -->
-<footer style="background:linear-gradient(180deg,#050c26,#0a1442);border-top:1px solid rgba(56,189,248,.2);padding:40px 16px 30px;">
+<footer data-aos="fade-up" style="background:linear-gradient(180deg,#050c26,#0a1442);border-top:1px solid rgba(56,189,248,.2);padding:40px 16px 30px;">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px;">
 
@@ -2056,10 +2084,10 @@ main > section > div.container,
     track.innerHTML=slides.map((s,i)=>{
       const cl=s.link&&s.link!=='/';
       return`<div style="flex:0 0 100%;position:relative;overflow:hidden;background:#050c26;"${cl?` onclick="window.location='${s.link}'" style="flex:0 0 100%;position:relative;overflow:hidden;cursor:pointer;background:#050c26;"`:''}>
-        <img src="${s.imageUrl}" alt="" aria-hidden="true" loading="${i===0?'eager':'lazy'}"
+        <img src="${s.imageUrl}" alt="" aria-hidden="true" loading="eager"
              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(22px) brightness(.55);transform:scale(1.15);"
              onerror="this.style.display='none'">
-        <img src="${s.imageUrl}" alt="${s.title||''}" loading="${i===0?'eager':'lazy'}"
+        <img src="${s.imageUrl}" alt="${s.title||''}" loading="eager"
              style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:1;"
              onerror="this.style.display='none'">
         <div style="position:absolute;inset:0;background:linear-gradient(105deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.15) 55%,transparent 100%);z-index:2;"></div>
@@ -2110,7 +2138,7 @@ async function loadPopular(){
         onmouseout="this.style.borderColor='rgba(37,99,235,.22)';this.style.transform=''">
         <div style="position:relative;height:110px;overflow:hidden;">
           ${plat?`<span style="position:absolute;top:6px;right:6px;z-index:10;font-size:8px;font-weight:800;padding:2px 5px;border-radius:3px;background:${platBg};color:${platClr};">${plat}</span>`:''}
-          ${p.image?`<img src="${p.image}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`:`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(37,99,235,.06);"><iconify-icon icon="solar:gamepad-bold" style="font-size:28px;color:rgba(37,99,235,.35);"></iconify-icon></div>`}
+          ${p.image?`<img src="${p.image}" style="width:100%;height:100%;object-fit:cover;" loading="eager" decoding="async">`:`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(37,99,235,.06);"><iconify-icon icon="solar:gamepad-bold" style="font-size:28px;color:rgba(37,99,235,.35);"></iconify-icon></div>`}
           <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,26,77,.8) 0%,transparent 55%);pointer-events:none;"></div>
         </div>
         <div style="padding:9px;">
@@ -2498,7 +2526,30 @@ document.addEventListener('DOMContentLoaded',loadPopular);
 
     <!-- ══ FLOATING CHAT WIDGET (WA / Telegram) ══ -->
 
-    <!-- ══ STATIC AUTH PAGE ══ -->
+    
+<!-- ══ ACCOUNT PAGE ══ -->
+<section id="sne-account-page" aria-hidden="true" style="display:none;position:fixed;inset:0;z-index:9900;background:rgba(0,0,0,.82);backdrop-filter:blur(12px);overflow:auto;">
+  <div style="min-height:100%;display:flex;align-items:center;justify-content:center;padding:24px 14px;">
+    <div style="width:min(520px,100%);background:#0b0b0b;border:1px solid rgba(255,255,255,.10);border-radius:18px;box-shadow:0 25px 80px rgba(0,0,0,.55);padding:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+        <div><div style="font-size:17px;font-weight:900;color:#fff">Akun Saya</div><div style="font-size:10px;color:#737373;margin-top:3px">Profil & riwayat pesanan</div></div>
+        <button onclick="closeAccount()" style="width:34px;height:34px;border-radius:9px;background:#151515;border:1px solid rgba(255,255,255,.08);color:#aaa;cursor:pointer"><iconify-icon icon="mdi:close"></iconify-icon></button>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:14px;border-radius:14px;background:#111;border:1px solid rgba(255,255,255,.08);">
+        <div id="accountAvatar" style="width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ef4444,#f97316);color:#fff;font-weight:900;font-size:17px">U</div>
+        <div style="min-width:0"><div id="accountName" style="color:#fff;font-size:13px;font-weight:900"></div><div id="accountEmail" style="color:#737373;font-size:10px;margin-top:3px;overflow:hidden;text-overflow:ellipsis"></div></div>
+      </div>
+      <div style="margin-top:16px;font-size:11px;font-weight:900;color:#fff">RIWAYAT PESANAN</div>
+      <div id="accountOrders" style="margin-top:5px;max-height:230px;overflow:auto"></div>
+      <div style="display:flex;gap:8px;margin-top:16px">
+        <a href="#invoice" onclick="closeAccount();location.hash='#invoice';return false" style="flex:1;text-align:center;padding:10px;border-radius:10px;background:#151515;border:1px solid rgba(255,255,255,.08);color:#ddd;text-decoration:none;font-size:11px;font-weight:800">CEK PESANAN</a>
+        <button onclick="logoutAccount()" style="flex:1;padding:10px;border-radius:10px;background:#ef4444;border:0;color:#fff;font-size:11px;font-weight:900;cursor:pointer">LOGOUT</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATIC AUTH PAGE ══ -->
     <section id="sne-auth-page" aria-hidden="true">
       <div class="sne-auth-shell">
         <div class="sne-auth-card">
@@ -2578,7 +2629,7 @@ document.addEventListener('DOMContentLoaded',loadPopular);
       </div>
     </section>
 
-    <div id="chatWidget" style="position:fixed;right:16px;bottom:16px;z-index:9300;display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+    <div id="chatWidget" data-aos="fade-left" data-aos-duration="400" style="position:fixed;right:16px;bottom:16px;z-index:9300;display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
         <div id="chatOptions" style="display:none;flex-direction:column;gap:8px;">
             
             <a href="https://t.me/SanjiNewEra" target="_blank" rel="noopener"
@@ -2587,6 +2638,12 @@ document.addEventListener('DOMContentLoaded',loadPopular);
             </a>
             
             
+
+            <a href="https://chat.whatsapp.com/FiLwfhkFB5jCNJOqlelAJ8?s=cl&p=a&ilr=1" target="_blank" rel="noopener"
+               style="display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:#0d1533;border:1px solid rgba(34,197,94,.35);color:#e2e8f0;font-size:12px;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,.35);white-space:nowrap;">
+                <iconify-icon icon="ic:baseline-whatsapp" style="color:#22c55e;font-size:17px;"></iconify-icon> order key?join grup
+            </a>
+
             <a href="https://wa.me/6283896539967" target="_blank" rel="noopener"
                style="display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:#0d1533;border:1px solid rgba(34,197,94,.35);color:#e2e8f0;font-size:12px;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,.35);white-space:nowrap;">
                 <iconify-icon icon="ic:baseline-whatsapp" style="color:#22c55e;font-size:17px;"></iconify-icon> Chat via WhatsApp
@@ -3100,5 +3157,193 @@ document.addEventListener('click', function(e){
   }
 });
 </script>
+
+
+
+
+<script>
+(function(){
+  'use strict';
+  const GROUP_WA='https://chat.whatsapp.com/FiLwfhkFB5jCNJOqlelAJ8?s=cl&p=a&ilr=1';
+
+  // ---------- FAST / RELIABLE IMAGES ----------
+  const PRODUCT_IMAGE_MAP={};
+  try{
+    // Pull the product dataset from the existing loadPopular function without changing its data.
+    const src=loadPopular.toString();
+    const matches=[...src.matchAll(/\"name\":\"([^\"]+)\".*?\"image\":\"(https:[^\"]+)\"/g)];
+    matches.forEach(m=>PRODUCT_IMAGE_MAP[m[1].trim().toLowerCase()]=m[2]);
+  }catch(e){}
+  window.__productImageMap=PRODUCT_IMAGE_MAP;
+
+  function imageName(img){
+    const card=img.closest('.pcard');
+    if(!card)return '';
+    const text=card.innerText||'';
+    return text.split('\n')[0].trim().toLowerCase();
+  }
+  function prepImage(img,index){
+    if(!img || !img.src)return;
+    img.loading='eager';
+    img.decoding='async';
+    if(index<8) img.setAttribute('fetchpriority','high');
+    img.style.visibility='visible';
+    img.addEventListener('error',function(){
+      const name=imageName(img);
+      const fallback=Object.keys(PRODUCT_IMAGE_MAP).find(k=>name.includes(k)||k.includes(name));
+      if(fallback && img.src!==PRODUCT_IMAGE_MAP[fallback]){
+        img.src=PRODUCT_IMAGE_MAP[fallback];
+        return;
+      }
+      img.classList.add('img-load-failed');
+    },{once:false});
+    if(img.complete && img.naturalWidth===0) img.dispatchEvent(new Event('error'));
+  }
+  function prepareAllImages(){
+    document.querySelectorAll('img[src]').forEach((img,i)=>prepImage(img,i));
+  }
+  // Warm product image URLs in parallel, but let the browser prioritize the visible viewport.
+  Object.values(PRODUCT_IMAGE_MAP).slice(0,20).forEach(url=>{const im=new Image();im.decoding='async';im.src=url;});
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',prepareAllImages,{once:true}); else prepareAllImages();
+
+  // ---------- AOS ----------
+  function initAOS(){
+    if(!window.AOS)return;
+    document.querySelectorAll('.pcard').forEach((el,i)=>{
+      if(!el.hasAttribute('data-aos')) el.setAttribute('data-aos','fade-up');
+      if(!el.hasAttribute('data-aos-delay')) el.setAttribute('data-aos-delay',String(Math.min((i%4)*45,135)));
+      el.setAttribute('data-aos-duration','520');
+    });
+    document.querySelectorAll('#games > div, #popular-products > div, footer > div').forEach(el=>{
+      if(!el.hasAttribute('data-aos')) el.setAttribute('data-aos','fade-up');
+    });
+    AOS.init({once:true,duration:520,easing:'ease-out-cubic',offset:70,delay:0,mirror:false,anchorPlacement:'top-bottom',disable:()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches});
+    requestAnimationFrame(()=>AOS.refreshHard());
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initAOS,{once:true}); else initAOS();
+  window.addEventListener('load',()=>window.AOS&&AOS.refreshHard(),{once:true});
+
+  // ---------- DIGITAL CLOCK NEAR DESCRIPTION ----------
+  function updateClock(){
+    const el=document.querySelector('#heroDigitalClock span');
+    if(!el)return;
+    const d=new Date(),p=n=>String(n).padStart(2,'0');
+    el.textContent=p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds());
+  }
+  updateClock(); setInterval(updateClock,1000);
+
+  // ---------- SLOW, SMOOTH TYPING WITH PER-LETTER FADE ----------
+  const typingEl=document.getElementById('heroTypingText');
+  if(typingEl){
+    const texts=[
+      'Layanan key premium, proses cepat, aman, dan siap digunakan.',
+      'Pilih game favoritmu lalu order key dalam beberapa langkah.',
+      'SanjiCITER — toko digital yang simpel, smooth, dan responsif.'
+    ];
+    let ti=0;
+    function renderText(text,reverse){
+      typingEl.innerHTML='';
+      [...text].forEach((ch,i)=>{
+        const span=document.createElement('span');
+        span.textContent=ch===' '?'\u00a0':ch;
+        span.style.opacity='0';
+        span.style.filter='blur(3px)';
+        span.style.transform='translateY(3px)';
+        span.style.display='inline-block';
+        span.style.transition='opacity .42s ease,filter .42s ease,transform .42s ease';
+        typingEl.appendChild(span);
+        setTimeout(()=>{span.style.opacity='1';span.style.filter='blur(0)';span.style.transform='translateY(0)'},i*62);
+      });
+      const total=text.length*62+700;
+      setTimeout(()=>eraseText(),total);
+    }
+    function eraseText(){
+      const spans=[...typingEl.children];
+      spans.forEach((sp,i)=>setTimeout(()=>{sp.style.opacity='0';sp.style.filter='blur(3px)';sp.style.transform='translateY(-2px)'},i*24));
+      setTimeout(()=>{ti=(ti+1)%texts.length;renderText(texts[ti],false)},spans.length*24+650);
+    }
+    renderText(texts[0],false);
+  }
+
+  // ---------- LOCAL ACCOUNT SYSTEM ----------
+  function getUser(){try{return JSON.parse(localStorage.getItem('sne_user')||'null')}catch(e){return null}}
+  function isLoggedIn(){return localStorage.getItem('sne_session')==='1' && !!getUser()}
+  window.isLoggedIn=isLoggedIn;
+  window.openAccount=function(){
+    if(!isLoggedIn()){showAuth('login');return;}
+    const page=document.getElementById('sne-account-page');
+    if(!page)return;
+    page.style.display='block';page.setAttribute('aria-hidden','false');document.body.classList.add('no-scroll');
+    renderAccount();
+  };
+  window.closeAccount=function(){const p=document.getElementById('sne-account-page');if(p){p.style.display='none';p.setAttribute('aria-hidden','true')}document.body.classList.remove('no-scroll');};
+  window.logoutAccount=function(){localStorage.removeItem('sne_session');closeAccount();showToast('Berhasil logout.','success');};
+  function renderAccount(){
+    const u=getUser(); if(!u)return;
+    const name=document.getElementById('accountName'),email=document.getElementById('accountEmail'),avatar=document.getElementById('accountAvatar');
+    if(name)name.textContent=u.name; if(email)email.textContent=u.email; if(avatar)avatar.textContent=(u.name||'U').slice(0,1).toUpperCase();
+    const list=document.getElementById('accountOrders');
+    if(list && window.MXInvoice){const items=MXInvoice.load().slice().reverse();list.innerHTML=items.length?items.map(o=>`<div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,.07)"><b style="color:#fff;font-size:11px">${o.code}</b><div style="color:#9ca3af;font-size:10px;margin-top:3px">${o.product} · ${o.duration}</div><div style="color:#38bdf8;font-size:10px;margin-top:2px">Rp ${Number(o.price||0).toLocaleString('id-ID')}</div></div>`).join(''):'<div style="font-size:11px;color:#64748b;padding:10px 0">Belum ada pesanan.</div>'}
+  }
+
+  // ---------- AUTH ----------
+  const oldShowAuth=window.showAuth;
+  window.showAuth=function(mode){
+    if(window.closeAccount)closeAccount();
+    if(typeof oldShowAuth==='function')oldShowAuth(mode);else return;
+    setTimeout(()=>{const f=document.getElementById(mode==='register'?'regName':'loginEmail');f&&f.focus() },120);
+  };
+  const oldRegister=window.doStaticRegister;
+  window.doStaticRegister=function(){
+    const name=document.getElementById('regName')?.value.trim();
+    const email=document.getElementById('regEmail')?.value.trim().toLowerCase();
+    const password=document.getElementById('regPassword')?.value||'';
+    if(!name||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)||password.length<6){showToast('Isi nama, email valid, dan password minimal 6 karakter.','error');return;}
+    localStorage.setItem('sne_user',JSON.stringify({name,email,password,createdAt:Date.now()}));
+    localStorage.setItem('sne_session','1');
+    closeAuth(); showToast('Akun berhasil dibuat dan kamu langsung login.','success');
+    setTimeout(()=>{if(window.pendingBuy){const p=window.pendingBuy;window.pendingBuy=null;let card=p.id?document.querySelector('.pcard[data-product-id="'+CSS.escape(p.id)+'"]'):null;if(!card&&p.name){card=[...document.querySelectorAll('.pcard')].find(c=>(c.innerText||'').toLowerCase().includes(p.name.toLowerCase()));}if(card)openPaymentFromCard(null,card);}},180);
+  };
+  const oldLogin=window.doStaticLogin;
+  window.doStaticLogin=function(){
+    const email=document.getElementById('loginEmail')?.value.trim().toLowerCase();
+    const password=document.getElementById('loginPassword')?.value||'';
+    let u=getUser();
+    if(!u||u.email!==email||u.password!==password){showToast('Email atau password salah.','error');return;}
+    localStorage.setItem('sne_session','1');closeAuth();showToast('Login berhasil.','success');
+    setTimeout(()=>{if(window.pendingBuy){const p=window.pendingBuy;window.pendingBuy=null;let card=p.id?document.querySelector('.pcard[data-product-id="'+CSS.escape(p.id)+'"]'):null;if(!card&&p.name){card=[...document.querySelectorAll('.pcard')].find(c=>(c.innerText||'').toLowerCase().includes(p.name.toLowerCase()));}if(card)openPaymentFromCard(null,card);}},180);
+  };
+
+  // ---------- BUY MUST BE LOGGED IN ----------
+  const oldOpen=window.openPaymentFromCard;
+  window.openPaymentFromCard=function(event,card){
+    if(!isLoggedIn()){
+      if(event)event.stopPropagation();
+      window.pendingBuy={id:card?.dataset?.productId||'',name:card?.innerText?.split('\n')[0]||'Produk'};
+      showToast('Silakan login atau daftar terlebih dahulu untuk membeli.','info');
+      showAuth('login');
+      return;
+    }
+    return oldOpen.apply(this,arguments);
+  };
+
+  // ---------- WHATSAPP GROUP ----------
+  const foot=document.querySelector('footer');
+  if(foot && !document.getElementById('waGroupLink')){
+    const a=document.createElement('a');a.id='waGroupLink';a.href=GROUP_WA;a.target='_blank';a.rel='noopener noreferrer';
+    a.innerHTML='<iconify-icon icon="mdi:whatsapp" style="font-size:16px"></iconify-icon><span>order key?join grup</span>';
+    a.style.cssText='display:inline-flex;align-items:center;gap:7px;margin-top:12px;padding:9px 13px;border-radius:10px;background:rgba(34,197,94,.10);border:1px solid rgba(34,197,94,.25);color:#4ade80;text-decoration:none;font-size:11px;font-weight:800;';
+    foot.querySelector('div > div')?.appendChild(a);
+  }
+
+  // Smooth page transitions without fading the entire page on every internal anchor.
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a[href]'); if(!a)return;
+    const href=a.getAttribute('href')||'';
+    if(href.startsWith('#')){return;}
+  },{passive:true});
+})();
+</script>
+
 </body>
 </html>
